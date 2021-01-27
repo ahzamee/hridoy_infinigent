@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:padding="40dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:src="@drawable/logo"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:background="@drawable/edit_text_border"
+        android:ems="10"
+        android:id="@+id/input_userid"
+        android:hint="Mobile No"
+        android:textColor="#000"
+        android:padding="10dp"
+        android:textColorHint="#999"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/input_password"
+        android:hint="Password"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#000"
+        android:textColorHint="#999"
+        android:background="@drawable/edit_text_border"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_red"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:text="Login" />
+
+
+</LinearLayout>
