@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_backdrop_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.InfinigentConsulting.NoActionBar">
+
+
+        <ImageView
+            android:id="@+id/backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:weightSum="14"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+
+            <!-- add RadioGroup which contain the many RadioButton-->
+            <RadioGroup
+                android:layout_marginTop="10dp"
+                android:id="@+id/groupradio"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- In RadioGroup create the 1 Radio Button-->
+                <!-- like this we will add some more Radio Button-->
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id1"
+                    android:text="হ্যাঁ"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id2"
+                    android:text="না"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id3"
+                    android:layout_margin="10dp"
+                    android:text="প্রযোজ্য না"
+                    android:textSize="20dp"/>
+
+                />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/retailer_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="খুচরা বিক্রেতার কোড"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/retailer_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="খুচরা বিক্রেতার কোড"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+
+            <!-- add RadioGroup which contain the many RadioButton-->
+            <RadioGroup
+                android:layout_marginTop="10dp"
+                android:id="@+id/groupradio"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- In RadioGroup create the 1 Radio Button-->
+                <!-- like this we will add some more Radio Button-->
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id1"
+                    android:text="হ্যাঁ"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id2"
+                    android:text="না"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id3"
+                    android:layout_margin="10dp"
+                    android:text="প্রযোজ্য না"
+                    android:textSize="20dp"/>
+
+                />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+
+            <!-- add RadioGroup which contain the many RadioButton-->
+            <RadioGroup
+                android:layout_marginTop="10dp"
+                android:id="@+id/groupradio"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- In RadioGroup create the 1 Radio Button-->
+                <!-- like this we will add some more Radio Button-->
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id1"
+                    android:text="হ্যাঁ"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id2"
+                    android:text="না"
+                    android:layout_margin="10dp"
+                    android:textSize="20dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radia_id3"
+                    android:layout_margin="10dp"
+                    android:text="প্রযোজ্য না"
+                    android:textSize="20dp"/>
+
+                />
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/retailer_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="খুচরা বিক্রেতার কোড"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/retailer_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="খুচরা বিক্রেতার কোড"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

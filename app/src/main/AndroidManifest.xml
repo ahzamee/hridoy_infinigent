@@ -8,8 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.InfinigentConsulting">
-
+        android:theme="@style/Theme.InfinigentConsulting.NoActionBar">
+        <activity android:name=".SchemeDetailsActivity"></activity>
+        <activity android:name=".OutletDetailsActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -19,13 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.InfinigentConsulting.NoActionBar">
-
-        </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/Theme.InfinigentConsulting.NoActionBar">
-        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.InfinigentConsulting.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.InfinigentConsulting.NoActionBar" />
+        <activity android:name=".HygieneAuditActivity" />
+        <activity android:name=".SchemeAuditActivity" />
     </application>
 
 </manifest>

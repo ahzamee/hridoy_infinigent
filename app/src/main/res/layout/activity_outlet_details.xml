@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_backdrop_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.InfinigentConsulting.NoActionBar">
+
+
+        <ImageView
+            android:id="@+id/backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:weightSum="14"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <EditText
+                android:id="@+id/outlet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="আউটলেটের নাম"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <EditText
+                android:id="@+id/retailer_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="খুচরা বিক্রেতার কোড"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <EditText
+                android:id="@+id/retailer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="খুচরা বিক্রেতার নাম"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <EditText
+                android:id="@+id/retailer_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="মোবাইল নাম্বার"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/outlet_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:hint="আউটলেটের ধরন"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="#000"
+                    android:textColorHint="#999" />
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/addbutton" />
+            </LinearLayout>
+
+            <AutoCompleteTextView
+                android:id="@+id/distributor_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="ডিস্ট্রিবিউটরের নাম"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <AutoCompleteTextView
+                android:id="@+id/aic_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="এ আই সি নাম"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <AutoCompleteTextView
+                android:id="@+id/asm_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_border"
+                android:hint="A S M নাম"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+            <EditText
+                android:id="@+id/outlet_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="আউটলেটের ঠিকানা"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
+
+
+            </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
