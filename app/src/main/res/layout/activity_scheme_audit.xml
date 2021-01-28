@@ -17,9 +17,9 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:src="@drawable/banner"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/banner" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

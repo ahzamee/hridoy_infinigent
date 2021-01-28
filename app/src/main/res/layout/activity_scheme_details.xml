@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
             android:src="@drawable/banner" />
 
 
@@ -188,16 +189,39 @@
                     android:id="@+id/date_of_scheme_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ম্যানুয়াল"/>
+                    android:text="মনে নাই"/>
 
             </LinearLayout>
 
-            <DatePicker
-                android:id="@+id/date_of_scheme"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_border"
-                />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/date_of_scheme_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="#000"
+                    android:textColorHint="#999" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/date_of_scheme_date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:text="Date"
+                    android:layout_weight="2"
+                    android:background="#ffff00"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
 
             <TextView
@@ -261,16 +285,39 @@
                     android:id="@+id/latest_chalan_date_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ম্যানুয়াল"/>
+                    android:text="মনে নাই"/>
 
             </LinearLayout>
 
-            <DatePicker
-                android:id="@+id/latest_chalan_date"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_border"
-                />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/latest_chalan_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:background="@drawable/edit_text_border"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:textColor="#000"
+                    android:textColorHint="#999" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/latest_chalan_date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
+                    android:text="Date"
+                    android:background="#ffff00"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -319,7 +366,7 @@
                     android:textColor="#000"
                     android:textColorHint="#999" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/chalan_type_id_button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -479,23 +526,24 @@
 
                 <EditText
                     android:id="@+id/sales_officer_visiting_day"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="8"
+                    android:layout_weight="6"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="#000"
-                    android:layout_gravity="left"
+                    android:layout_gravity="start"
                     android:textColorHint="#999" />
 
                 <RadioGroup
                     android:id="@+id/sales_officer_visiting_day_radio_group"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_gravity="right"
+                    android:layout_weight="4"
+                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <!-- In RadioGroup create the 1 Radio Button-->
@@ -504,7 +552,7 @@
                         android:id="@+id/sales_officer_visiting_day_radio_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         android:text="Day"
                         android:textSize="20dp" />
 
@@ -512,7 +560,7 @@
                         android:id="@+id/sales_officer_visiting_day_radio_month"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_margin="5dp"
                         android:text="Month"
                         android:textSize="20dp" />
 
@@ -720,12 +768,12 @@
                     android:textColor="#000"
                     android:textColorHint="#999" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/comments_type_button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
                     android:background="@drawable/addbutton" />
             </LinearLayout>
 
@@ -749,56 +797,50 @@
                     android:textColor="#000"
                     android:textColorHint="#999" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/comments_button"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
                     android:background="@drawable/addbutton" />
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/comment_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_border"
+                android:ems="10"
+                android:hint="মন্তব্য"
+                android:text="abc"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:textColorHint="#999" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
-                <EditText
-                    android:id="@+id/comment_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="8"
-                    android:background="@drawable/edit_text_border"
-                    android:ems="10"
-                    android:hint="মন্তব্যর ধরন"
-                    android:inputType="text"
-                    android:padding="10dp"
-                    android:textColor="#000"
-                    android:textColorHint="#999" />
 
 
-                <Button
+                <ImageButton
                     android:id="@+id/previous_button"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="left"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/left_arrow" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/next_button"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="right"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
                     android:background="@drawable/right_arrow" />
             </LinearLayout>
-
-
-
-
-
 
 
         </LinearLayout>
