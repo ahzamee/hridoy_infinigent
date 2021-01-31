@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Rect;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -40,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CardViewAdapter adapter;
     private List<CardElement> cardElements;
-
+    private boolean IsInternetAvaiable = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        internetIsConnected();
         myDb = new DatabaseHelper(this);
         recyclerView = findViewById(R.id.recycler_view);
 
@@ -63,9 +67,12 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case 2:
-                        new GetListofUser().execute();
-                       /* i = new Intent(MainActivity.this, SchemeAuditActivity.class);
-                        startActivity(i);*/
+                        if(IsInternetAvaiable== true) {
+                            new GetListofUser().execute();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Internet Is Not Available,Please Check Your Internet Connection.", Toast.LENGTH_LONG).show();
+                        }
                         break;
                     case 3:
 
@@ -92,7 +99,18 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    public boolean internetIsConnected() {
 
+
+        try {
+
+            String command = "ping -c 1 google.com";
+            IsInternetAvaiable = (Runtime.getRuntime().exec(command).waitFor() == 0);
+            return IsInternetAvaiable;
+        } catch (Exception e) {
+            return IsInternetAvaiable;
+        }
+    }
     private void prepareAlbums() {
         int[] covers = new int[]{
                 R.drawable.scheme_audit,
@@ -125,15 +143,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AddData(ArrayList<UserClass> UserList) {
-        for (UserClass item:UserList)
-              {
-                boolean  isInserted= myDb.insertData(item.Name,item.Email,item.MobileNo,item.Password,item.IsActive);
 
-                  if (isInserted == true)
-                      Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                  else
-                      Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-        }
+            for (UserClass item : UserList) {
+                boolean isInserted = myDb.insertData(item.Name, item.Email, item.MobileNo, item.Password, item.IsActive);
+
+                if (isInserted == true)
+                    Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+            }
 
 
 

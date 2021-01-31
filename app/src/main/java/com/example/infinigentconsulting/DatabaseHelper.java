@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.ConnectivityManager;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "qt_infinigentdb.db";
@@ -142,11 +143,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(LU_User_COL_4, MobileNo);
         contentValues.put(LU_User_COL_5, Password);
         contentValues.put(LU_User_COL_6, IsActive);
-        long result = db.insert(TABLE_NAME_LU_User, null, contentValues);
-        if (result == -1)
-            return false;
-        else
-            return true;
+        boolean Isresult= false;
+        try
+        {
+            db.beginTransaction();
+            long  result = db.insert(TABLE_NAME_LU_User, null, contentValues);
+            db.setTransactionSuccessful();
+            if (result == -1)
+                Isresult= false;
+            else
+                Isresult= true;
+        }
+        catch (Exception exception)
+        {
+
+            db.endTransaction();
+        }
+        finally {
+            db.endTransaction();
+        }
+        return  Isresult;
     }
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
