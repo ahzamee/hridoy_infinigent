@@ -1,23 +1,26 @@
 package com.example.infinigentconsulting;
 
 public class UserClass {
-    public int Id ;
-    public String Name ;
-    public String Email ;
-    public String MobileNo ;
-    public String Password ;
-    public boolean IsActive ;
+    public int Id;
+    public String Name;
+    public String Email;
+    public String MobileNo;
+    public String Password;
+    public boolean IsActive;
 
 
     public int getId() {
         return Id;
     }
+
     public void setId(int id) {
         this.Id = id;
     }
+
     public String getMobileNo() {
         return MobileNo;
     }
+
     public void setMobileNo(String mobileNo) {
         this.MobileNo = mobileNo;
     }
@@ -45,6 +48,7 @@ public class UserClass {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
     public Boolean getIsActive() {
         return IsActive;
     }

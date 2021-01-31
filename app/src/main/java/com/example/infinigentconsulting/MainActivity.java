@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<UserClass> UserList) {
            // super.onPostExecute(i);
             if (UserList.size() > 1) {
-                //AddData(UserList);
+                AddData(UserList);
                 viewAll();
 
             } else {
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                        _UserClass.setIsActive(object2.getBoolean("IsActive"));
 
                         UserArrayList.add(_UserClass);
-                        //id":26,"mobile_no":"01713332618","ph":"5","calcium":"1","carbon":"5","magnesium":"1","nitrogen":"1","phosphorus":"1","sulphur":"1","is_viewed":0
+
                     }
                 } catch (JSONException e322) {
                     response = e322.getMessage();
