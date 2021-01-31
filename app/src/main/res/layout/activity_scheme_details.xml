@@ -17,8 +17,8 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/banner" />
 
 
@@ -185,11 +185,12 @@
                     android:text="কবে পেয়েছেন ?"
                     android:textSize="20dp"
                     android:textStyle="bold" />
+
                 <CheckBox
                     android:id="@+id/date_of_scheme_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="মনে নাই"/>
+                    android:text="মনে নাই" />
 
             </LinearLayout>
 
@@ -217,9 +218,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:text="Date"
                     android:layout_weight="2"
                     android:background="#ffff00"
+                    android:text="Date"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -281,11 +282,12 @@
                     android:text="সর্বশেষ চালান প্রাপ্তির তারিখ ?"
                     android:textSize="20dp"
                     android:textStyle="bold" />
+
                 <CheckBox
                     android:id="@+id/latest_chalan_date_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="মনে নাই"/>
+                    android:text="মনে নাই" />
 
             </LinearLayout>
 
@@ -314,8 +316,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="2"
-                    android:text="Date"
                     android:background="#ffff00"
+                    android:text="Date"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -347,6 +349,7 @@
                 android:text="আপনি কোন ধরনের চালান পাচ্ছেন ?"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -509,6 +512,7 @@
 
                 />
             </RadioGroup>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -528,22 +532,22 @@
                     android:id="@+id/sales_officer_visiting_day"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="start"
                     android:layout_weight="6"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="#000"
-                    android:layout_gravity="start"
                     android:textColorHint="#999" />
 
                 <RadioGroup
                     android:id="@+id/sales_officer_visiting_day_radio_group"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:layout_marginTop="10dp"
                     android:layout_weight="4"
-                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <!-- In RadioGroup create the 1 Radio Button-->
@@ -568,6 +572,7 @@
                     />
                 </RadioGroup>
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -813,9 +818,9 @@
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:hint="মন্তব্য"
-                android:text="abc"
                 android:inputType="text"
                 android:padding="10dp"
+                android:text="abc"
                 android:textColor="#000"
                 android:textColorHint="#999" />
 
@@ -828,14 +833,14 @@
 
 
                 <ImageButton
-                    android:id="@+id/previous_button"
+                    android:id="@+id/scheme_details_previous_button"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="30dp"
                     android:background="@drawable/left_arrow" />
 
                 <ImageButton
-                    android:id="@+id/next_button"
+                    android:id="@+id/scheme_details_next_button"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"

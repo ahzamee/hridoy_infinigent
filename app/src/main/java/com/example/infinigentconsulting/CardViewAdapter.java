@@ -1,4 +1,5 @@
 package com.example.infinigentconsulting;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -28,18 +29,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.MyView
         this.listener = listener;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public ImageView thumbnail;
-
-        public MyViewHolder(View view) {
-            super(view);
-            title = view.findViewById(R.id.title);
-            thumbnail = view.findViewById(R.id.thumbnail);
-        }
-    }
-
-
     public CardViewAdapter(Context mContext, List<CardElement> cardElements) {
         this.mContext = mContext;
         this.cardElements = cardElements;
@@ -52,7 +41,6 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.MyView
 
         return new MyViewHolder(itemView);
     }
-
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
@@ -71,10 +59,19 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.MyView
         });
     }
 
-
-
     @Override
     public int getItemCount() {
         return cardElements.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        public TextView title;
+        public ImageView thumbnail;
+
+        public MyViewHolder(View view) {
+            super(view);
+            title = view.findViewById(R.id.title);
+            thumbnail = view.findViewById(R.id.thumbnail);
+        }
     }
 }
