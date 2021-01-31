@@ -814,14 +814,14 @@
 
 
                 <ImageButton
-                    android:id="@+id/previous_button"
+                    android:id="@+id/scheme_details_previous_button"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="30dp"
                     android:background="@drawable/left_arrow" />
 
                 <ImageButton
-                    android:id="@+id/next_button"
+                    android:id="@+id/scheme_details_next_button"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="30dp"
