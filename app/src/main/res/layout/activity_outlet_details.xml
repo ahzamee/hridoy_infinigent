@@ -173,6 +173,16 @@
                 android:textColor="#000"
                 android:textColorHint="#999" />
 
+            <ImageButton
+                android:id="@+id/outlate_previous_button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/right_arrow" />
+
 
             </LinearLayout>
     </ScrollView>
