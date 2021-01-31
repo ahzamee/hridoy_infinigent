@@ -17,8 +17,9 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/banner" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -48,7 +49,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Input Hygiene Audit"
+            android:text="@string/input_hygiene_audit"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
@@ -69,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Audited Scheme"
+            android:text="@string/view_audited_scheme"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
@@ -79,5 +80,15 @@
 
 
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/bgBottomNavigation"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

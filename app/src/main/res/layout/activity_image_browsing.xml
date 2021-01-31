@@ -17,8 +17,9 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="20dp"
             android:src="@drawable/banner" />
 
 
@@ -39,22 +40,22 @@
                 android:id="@+id/signature_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/sign_brows"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/sign_brows"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:text="স্বাক্ষর"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
+                android:text="@string/signature"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
 
@@ -82,18 +83,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:text="দোকানের ছবি"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"/>
+                android:text="@string/shop_image"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
 
@@ -101,25 +102,25 @@
                     android:id="@+id/preview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textColor="@color/black"
-                    android:text="Preview"
                     android:layout_marginRight="30dp"
-                    android:background="#ffff00"/>
+                    android:background="#ffff00"
+                    android:text="@string/preview"
+                    android:textColor="@color/black"/>
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/submit"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
-                    android:textColor="@color/black"
-                    android:text="Submit"
-                    android:background="#11FF00"/>
+                    android:background="#11FF00"
+                    android:text="@string/submit"
+                    android:textColor="@color/black"/>
             </LinearLayout>
             <ImageButton
                 android:id="@+id/img_previous_button"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/left_arrow" />
 
@@ -127,5 +128,13 @@
 
 
         </LinearLayout>
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/bgBottomNavigation"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

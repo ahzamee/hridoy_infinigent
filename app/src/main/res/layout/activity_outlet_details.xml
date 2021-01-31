@@ -17,8 +17,9 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/banner" />
 
 
@@ -26,7 +27,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        app:layout_anchorGravity="center"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
         <LinearLayout
@@ -35,7 +38,6 @@
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:padding="30dp"
-            android:weightSum="14"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <EditText
@@ -45,7 +47,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:hint="আউটলেটের নাম"
+                android:hint="@string/outlet_name"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
@@ -59,7 +61,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:hint="খুচরা বিক্রেতার কোড"
+                android:hint="@string/retailer_code"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
@@ -73,7 +75,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:hint="খুচরা বিক্রেতার নাম"
+                android:hint="@string/retailer_name"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
@@ -87,7 +89,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:hint="মোবাইল নাম্বার"
+                android:hint="@string/mobile_no"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
@@ -107,7 +109,7 @@
                     android:layout_weight="8"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
-                    android:hint="আউটলেটের ধরন"
+                    android:hint="@string/outlet_type"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="#000"
@@ -130,7 +132,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
-                android:hint="ডিস্ট্রিবিউটরের নাম"
+                android:hint="@string/distributor_name"
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textColorHint="#999" />
@@ -142,7 +144,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
-                android:hint="এ আই সি নাম"
+                android:hint="@string/aic_name"
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textColorHint="#999" />
@@ -152,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border"
-                android:hint="A S M নাম"
+                android:hint="@string/asm_name"
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textColorHint="#999" />
@@ -165,7 +167,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:hint="আউটলেটের ঠিকানা"
+                android:hint="@string/outlet_address"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
@@ -174,4 +176,13 @@
 
             </LinearLayout>
     </ScrollView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/bgBottomNavigation"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,8 +17,9 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/banner" />
 
 
@@ -27,5 +28,14 @@
 
 
     <include layout="@layout/content_main" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/bgBottomNavigation"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

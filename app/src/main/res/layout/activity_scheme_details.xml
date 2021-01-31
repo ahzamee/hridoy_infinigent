@@ -17,8 +17,9 @@
             android:id="@+id/backdrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:layout_marginBottom="20dp"
             android:src="@drawable/banner" />
 
 
@@ -27,25 +28,25 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
         app:layout_anchorGravity="center"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:padding="30dp"
-            android:weightSum="14"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি কি বর্তমান স্কিম সম্পর্কে অবহিত ?"
-                android:textSize="20dp"
+                android:text="@string/IsKnownAboutScheme"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -63,34 +64,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_known_about_scheme_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_known_about_scheme_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
 
-                />
+
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="( যদি হ্যা ) বর্তমান স্কিমটি কি ?"
-                android:textSize="20dp"
+                android:text="@string/present_scheme_details"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -110,8 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি কিভাবে স্কিম সম্পর্কে জানতে পারেন ?"
-                android:textSize="20dp"
+                android:text="@string/SchemeMediaType"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -131,8 +132,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি কি স্কিম মোতাবেক পণ্য/ সুবিধা পেয়েছেন ?"
-                android:textSize="20dp"
+                android:text="@string/IsFacilitatedByScheme"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -150,26 +151,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_facilitated_by_scheme_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_facilitated_by_scheme_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
-
-                />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
             </RadioGroup>
 
 
@@ -182,14 +181,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="কবে পেয়েছেন ?"
-                    android:textSize="20dp"
+                    android:text="@string/DateOfScheme"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
                 <CheckBox
                     android:id="@+id/date_of_scheme_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="মনে নাই"/>
+                    android:text="@string/forgotten"/>
 
             </LinearLayout>
 
@@ -217,9 +216,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
-                    android:text="Date"
                     android:layout_weight="2"
                     android:background="#ffff00"
+                    android:text="@string/date"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -228,8 +227,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি যে পণ্য অথবা সুবিধা পেয়েছেন তার কোন লিখিত রেকর্ড/ চালান পেয়েছেন কিনা ?"
-                android:textSize="20dp"
+                android:text="@string/IsWrittenRecordAvailable"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -247,26 +246,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_written_record_available_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_written_record_available_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
-
-                />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
             </RadioGroup>
 
             <LinearLayout
@@ -278,14 +275,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="সর্বশেষ চালান প্রাপ্তির তারিখ ?"
-                    android:textSize="20dp"
+                    android:text="@string/LatestChallanDate"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
                 <CheckBox
                     android:id="@+id/latest_chalan_date_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="মনে নাই"/>
+                    android:text="@string/forgotten"/>
 
             </LinearLayout>
 
@@ -314,8 +311,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="2"
-                    android:text="Date"
                     android:background="#ffff00"
+                    android:text="@string/date"
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -323,8 +320,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="সর্বশেষ চালান প্রাপ্তির পরিমান কত ?"
-                android:textSize="20dp"
+                android:text="@string/ChallanAmount"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -344,8 +341,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি কোন ধরনের চালান পাচ্ছেন ?"
-                android:textSize="20dp"
+                android:text="@string/ChallanType"
+                android:textSize="20sp"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -379,8 +376,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="দোকানে কোনো মেয়াদ উত্তীর্ণ পণ্য আছে কি ?"
-                android:textSize="20dp"
+                android:text="@string/DoesExpiredProductAvailable"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -398,34 +395,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_expired_product_available_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_expired_product_available_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
 
-                />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি কি সেলস অফিসারের সেবা প্রদানের মান নিয়ে সন্তুষ্ট ?"
-                android:textSize="20dp"
+                android:text="@string/DoesSatisfiedWithSallesOfficer"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -443,34 +439,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_satisfied_with_sales_officer_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_satisfied_with_sales_officer_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
 
-                />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="পণ্যের অর্ডার এবং প্রাপ্তিতে আপনি কি সন্তুষ্ট ?"
-                android:textSize="20dp"
+                android:text="@string/DoesSatisfiedWithProductOrderAndService"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -488,33 +483,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_satisfied_with_product_order_And_service_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_satisfied_with_product_order_And_service_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
-
-                />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
             </RadioGroup>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনার আউটলেটে সেলস অফিসার কতদিন অন্তর অন্তর আসেন?"
-                android:textSize="20dp"
+                android:text="@string/SallesOfficerVisitingDay"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -528,22 +521,22 @@
                     android:id="@+id/sales_officer_visiting_day"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="start"
                     android:layout_weight="6"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="#000"
-                    android:layout_gravity="start"
                     android:textColorHint="#999" />
 
                 <RadioGroup
                     android:id="@+id/sales_officer_visiting_day_radio_group"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:layout_marginTop="10dp"
                     android:layout_weight="4"
-                    android:layout_gravity="end"
                     android:orientation="horizontal">
 
                     <!-- In RadioGroup create the 1 Radio Button-->
@@ -553,27 +546,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:text="Day"
-                        android:textSize="20dp" />
+                        android:text="@string/day"
+                        android:textSize="20sp" />
 
                     <RadioButton
                         android:id="@+id/sales_officer_visiting_day_radio_month"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:text="Month"
-                        android:textSize="20dp" />
+                        android:text="@string/Month"
+                        android:textSize="20sp" />
 
-
-                    />
                 </RadioGroup>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আপনি সর্বশেষ ডিসকাউন্ট সুবিধা পেয়াছেন কি ?"
-                android:textSize="20dp"
+                android:text="@string/DoesGotLatestDiscountOffer"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -591,34 +582,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_got_latest_discount_offer_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_got_latest_discount_offer_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
-
-                />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="ডিস্ট্রিবিউটরের কাছ থেকে কোন ডিসকাউন্ট পাওনা আছে কি?(এইচ ভি ও/ হোলসেল প্রযোজ্য)?"
-                android:textSize="20dp"
+                android:text="@string/WillGetAnyDiscountOfferFromDistributor"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -636,34 +625,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/will_get_any_discount_offer_from_distributor_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/will_get_any_discount_offer_from_distributor_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
 
-                />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="চালানে কোকা-কোলার লোগো আছে কিনা ??"
-                android:textSize="20dp"
+                android:text="@string/DoesCocaColaLabelAvailable"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -681,34 +669,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_cocacola_label_available_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/does_cocacola_label_available_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
 
-                />
             </RadioGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="আউটলেটে জি সি সি কোড আছে কিনা ?"
-                android:textSize="20dp"
+                android:text="@string/IsGccCodeAvailable"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- add RadioGroup which contain the many RadioButton-->
@@ -726,26 +713,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="হ্যাঁ"
-                    android:textSize="20dp" />
+                    android:text="@string/yes"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_gcc_code_available_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="না"
-                    android:textSize="20dp" />
+                    android:text="@string/no"
+                    android:textSize="20sp" />
 
                 <RadioButton
                     android:id="@+id/is_gcc_code_available_not_required"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="প্রযোজ্য না"
-                    android:textSize="20dp" />
+                    android:text="@string/not_required"
+                    android:textSize="20sp" />
 
-                />
+
             </RadioGroup>
 
             <LinearLayout
@@ -762,7 +749,7 @@
                     android:layout_weight="8"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
-                    android:hint="মন্তব্যর ধরন"
+                    android:hint="@string/CommentsType"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="#000"
@@ -791,7 +778,7 @@
                     android:layout_weight="8"
                     android:background="@drawable/edit_text_border"
                     android:ems="10"
-                    android:hint="মন্তব্য"
+                    android:hint="@string/comment"
                     android:inputType="text"
                     android:padding="10dp"
                     android:textColor="#000"
@@ -812,8 +799,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
-                android:hint="মন্তব্য"
-                android:text="abc"
+                android:hint="@string/other_comments"
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
@@ -845,4 +831,14 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemBackground="@color/bgBottomNavigation"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

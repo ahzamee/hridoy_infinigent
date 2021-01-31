@@ -10,28 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InfinigentConsulting.NoActionBar">
         <activity android:name=".ImageBrowsingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SchemeDetailsActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:isScrollContainer="true"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".OutletDetailsActivity"
+            android:isScrollContainer="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OutletDetailsActivity" />
-        <activity
-            android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"></activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.InfinigentConsulting.NoActionBar" />
+            android:isScrollContainer="true"
+            android:theme="@style/Theme.InfinigentConsulting.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.InfinigentConsulting.NoActionBar"></activity>
