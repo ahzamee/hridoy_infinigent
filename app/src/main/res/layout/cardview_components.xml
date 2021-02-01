@@ -30,7 +30,7 @@
                 android:layout_below="@id/thumbnail"
                 android:gravity="center_horizontal"
                 android:paddingLeft="@dimen/album_title_padding"
-                android:paddingTop="@dimen/album_title_padding"
+                android:paddingBottom="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
                 android:textColor="@color/black"
                 android:textSize="@dimen/album_title" />

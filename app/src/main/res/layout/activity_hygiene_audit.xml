@@ -32,7 +32,6 @@
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:padding="20dp"
-        android:weightSum="14"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ImageButton
@@ -86,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemBackground="@color/bgBottomNavigation"
+        android:background="@color/bgBottomNavigation"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_navigation" />
