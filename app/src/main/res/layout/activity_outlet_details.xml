@@ -33,11 +33,16 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
         <LinearLayout
+            android:id="@+id/outlet_details_cl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:padding="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_marginBottom="20dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <EditText
@@ -51,7 +56,8 @@
                 android:inputType="text"
                 android:padding="10dp"
                 android:textColor="#000"
-                android:textColorHint="#999" />
+                android:textColorHint="#999"
+                />
 
             <EditText
                 android:id="@+id/retailer_code"
@@ -191,7 +197,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemBackground="@color/bgBottomNavigation"
+        android:background="@color/bgBottomNavigation"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_navigation" />

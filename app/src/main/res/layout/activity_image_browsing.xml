@@ -32,7 +32,7 @@
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:padding="30dp"
-            android:weightSum="14"
+            android:layout_marginBottom="20dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -133,7 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemBackground="@color/bgBottomNavigation"
+        android:background="@color/bgBottomNavigation"
         app:itemIconTint="@drawable/bottom_navigation_selector"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_navigation" />
