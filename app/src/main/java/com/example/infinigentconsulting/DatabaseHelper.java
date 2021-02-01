@@ -60,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String LU_User_COL_3 = "Email";
     public static final String LU_User_COL_4 = "MobileNo";
     public static final String LU_User_COL_5 = "Password";
-    public static final String  LU_User_COL_6 = "IsActive";
+    public static final String LU_User_COL_6 = "IsActive";
 
     /*--Table Name TRN_SchemeAuditChild--*/
     public static final String TABLE_NAME_TRN_SchemeAuditChild = "TRN_SchemeAuditChild";
