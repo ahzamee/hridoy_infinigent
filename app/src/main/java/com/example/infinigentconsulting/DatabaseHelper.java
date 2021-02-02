@@ -127,14 +127,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME_LU_User + " (Id INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Email TEXT,MobileNo TEXT,Password TEXT,IsActive NUMERIC)");
+
+        db.execSQL("CREATE TABLE " + TABLE_NAME_TRN_SchemeAuditChild + " (Id INTEGER PRIMARY KEY AUTOINCREMENT,Number TEXT, ImageLocation  blob,IsSignature NUMERIC)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_User);
+        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_TRN_SchemeAuditChild);
         onCreate(db);
     }
 
+    //
+    public boolean addData(byte[] img)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TRN_SchemeAuditChild_COL_2, "Test");
+        contentValues.put(TRN_SchemeAuditChild_COL_3, img);
+        contentValues.put(TRN_SchemeAuditChild_COL_4, true);
+        boolean Isresult= false;
+        try
+        {
+            db.beginTransaction();
+            long  result = db.insert(TABLE_NAME_TRN_SchemeAuditChild, null, contentValues);
+            db.setTransactionSuccessful();
+            if (result == -1)
+                Isresult= false;
+            else
+                Isresult= true;
+        }
+        catch (Exception exception)
+        {
+
+            db.endTransaction();
+        }
+        finally {
+            db.endTransaction();
+        }
+        return  Isresult;
+
+    }
+    //
     public boolean   insertData(String Name, String Email, String MobileNo, String Password,boolean IsActive) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

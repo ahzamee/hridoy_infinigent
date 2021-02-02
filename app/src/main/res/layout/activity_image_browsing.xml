@@ -25,8 +25,16 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        app:layout_anchorGravity="center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-        <LinearLayout
+
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
@@ -88,6 +96,17 @@
                 android:text="@string/shop_image"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/_submit_img"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:background="#11FF00"
+            android:text="@string/submit"
+            android:layout_margin="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"/>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -128,6 +147,7 @@
 
 
         </LinearLayout>
+    </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
