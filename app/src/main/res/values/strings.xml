@@ -49,4 +49,8 @@
     <string name="asm_name">A S M নাম</string>
     <string name="outlet_address">আউটলেটের ঠিকানা</string>
     <string name="input_scheme_audit">Input Scheme Audit</string>
+
+    <string name="agreement">I agree the terms and conditions.</string>
+    <string name="clear_pad">Clear Pad</string>
+    <string name="save_signature">Save Signature</string>
 </resources>
