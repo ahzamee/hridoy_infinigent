@@ -102,7 +102,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
             android:background="#11FF00"
-            android:text="@string/submit"
+            android:text="ADD"
             android:layout_margin="20dp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/black"/>

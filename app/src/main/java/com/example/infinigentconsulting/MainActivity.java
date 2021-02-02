@@ -113,10 +113,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void prepareAlbums() {
         int[] covers = new int[]{
-                R.drawable.scheme_audit,
-                R.drawable.hygen_audit,
-                R.drawable.sync_settings,
-                R.drawable.project_status};
+                R.drawable.scheme_auditt,
+                R.drawable.hygiene_audit,
+                R.drawable.sync,
+                R.drawable.status};
 
         CardElement a = new CardElement("Scheme Audit", covers[0]);
         cardElements.add(a);
