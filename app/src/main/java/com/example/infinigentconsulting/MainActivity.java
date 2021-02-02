@@ -48,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         internetIsConnected();
         myDb = new DatabaseHelper(this);
+
         recyclerView = findViewById(R.id.recycler_view);
 
         cardElements = new ArrayList<CardElement>();
@@ -68,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if(IsInternetAvaiable== true) {
-                            new GetListofUser().execute();
+                            //new GetListofUser().execute();
+                            //new GetDistributorList().execute();
+                            new GetAICList().execute();
+                            //new GetASMList().execute();
                         }
                         else{
                             Toast.makeText(MainActivity.this, "Internet Is Not Available,Please Check Your Internet Connection.", Toast.LENGTH_LONG).show();
@@ -88,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
+        //myDb.getAllData();
         prepareAlbums();
 
 
@@ -141,7 +146,48 @@ public class MainActivity extends AppCompatActivity {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+    public void AddDistributorList(ArrayList<GenericClass> DistributorList) {
 
+        for (GenericClass item : DistributorList) {
+            boolean isInserted = myDb.insertDistributorList(item.Id,item.Name,item.IsActive);
+
+            if (isInserted == true)
+                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+        }
+
+
+
+    }
+    public void AddAICList(ArrayList<GenericClass> AICList) {
+
+        for (GenericClass item : AICList) {
+            boolean isInserted = myDb.insertAICList(item.Id,item.Name,item.IsActive);
+
+            if (isInserted == true)
+                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+        }
+
+
+
+    }
+    public void AddASMList(ArrayList<GenericClass> ASMList) {
+
+        for (GenericClass item : ASMList) {
+            boolean isInserted = myDb.insertASMList(item.Id,item.Name,item.IsActive);
+
+            if (isInserted == true)
+                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+        }
+
+
+
+    }
     public void AddData(ArrayList<UserClass> UserList) {
 
             for (UserClass item : UserList) {
@@ -192,8 +238,8 @@ public class MainActivity extends AppCompatActivity {
         else
             Toast.makeText(MainActivity.this, "Data not Deleted", Toast.LENGTH_LONG).show();
     }
-
-    public class GetListofUser extends AsyncTask<ArrayList<String>, Void, ArrayList<UserClass>> {
+         /* Begin-- Collect User information data from DB with API --Begin*/
+        public class GetListofUser extends AsyncTask<ArrayList<String>, Void, ArrayList<UserClass>> {
         protected void onPreExecute() {
             super.onPreExecute();
         }
@@ -294,6 +340,319 @@ public class MainActivity extends AppCompatActivity {
             return UserArrayList ;
         }
     }
+       /*END-- Collect User information data from DB with API --END*/
+
+
+       /* Begin-- Collect Distributor List information data from DB with API --Begin*/
+       public class GetDistributorList extends AsyncTask<ArrayList<String>, Void, ArrayList<GenericClass>> {
+           protected void onPreExecute() {
+               super.onPreExecute();
+           }
+
+           protected void onPostExecute(ArrayList<GenericClass> DistributorList) {
+               // super.onPostExecute(i);
+               if (DistributorList.size() > 1) {
+                   AddDistributorList(DistributorList);
+
+
+               } else {
+                   // onLoginFailed();
+               }
+           }
+
+           protected ArrayList<GenericClass> doInBackground(ArrayList<String>... params) {
+               Integer result;
+               JSONObject jObject;
+               JSONArray jsonArray = null;
+               int i = 0;
+               String str = "http://192.168.1.5:91/api/DistributorDetails";//"http://202.126.122.85:71/api/Division";
+               String response = "";
+               ArrayList<GenericClass> DistributorArrayList = new ArrayList();
+               URL url = null;
+               try {
+                   url = new URL(str);
+               } catch (MalformedURLException e) {
+                   response = e.getMessage();
+               } catch (Exception ex) {
+                   response = ex.getMessage();
+               }
+               HttpURLConnection conn = null;
+
+               JSONObject jsonObject;
+               JSONStringer userJson = null;
+               OutputStreamWriter outputStreamWriter = null;
+               int responseCode;
+               BufferedReader br;
+               String line;
+               try {
+                   conn = (HttpURLConnection) url.openConnection();
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+               //starting
+               try {
+                   conn.setRequestMethod("GET");
+               } catch (ProtocolException e) {
+                   e.printStackTrace();
+               }
+
+               try {
+                   responseCode = conn.getResponseCode();
+                   br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                   while (true) {
+                       line = br.readLine();
+                       if (line != null) {
+                           response = response + line;
+                       }
+                       else
+                       {
+                           break;
+                       }
+
+                   }
+                   jObject = null;
+                   if (!response.isEmpty()) {
+                       try {
+                           jsonArray = new JSONArray(response);
+
+                       } catch (JSONException e) {
+                           e.printStackTrace();
+                       }
+                   }
+                   try {
+
+                       for (i = 0; i < jsonArray.length(); i++) {
+                           JSONObject object2 = jsonArray.getJSONObject(i);
+                           GenericClass _Distributor= new GenericClass ();
+                           _Distributor.setId(object2.getInt("Id"));
+                           _Distributor.setName(object2.getString("Name"));
+                           _Distributor.setIsActive(object2.getBoolean("IsActive"));
+
+
+
+                           DistributorArrayList.add(_Distributor);
+
+                       }
+                   } catch (JSONException e322) {
+                       response = e322.getMessage();
+                   }
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
+
+
+               return DistributorArrayList ;
+           }
+       }
+      /*END-- Collect Distributor List data from DB with API --END*/
+
+    /* Begin-- Collect AIC List information data from DB with API --Begin*/
+    public class GetAICList extends AsyncTask<ArrayList<String>, Void, ArrayList<GenericClass>> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected void onPostExecute(ArrayList<GenericClass> AICList) {
+            // super.onPostExecute(i);
+            if (AICList.size() > 1) {
+                AddAICList(AICList);
+
+
+            } else {
+                // onLoginFailed();
+            }
+        }
+
+        protected ArrayList<GenericClass> doInBackground(ArrayList<String>... params) {
+            Integer result;
+            JSONObject jObject;
+            JSONArray jsonArray = null;
+            int i = 0;
+            String str = "http://192.168.1.5:91/api/AIC";//"http://202.126.122.85:71/api/Division";
+            String response = "";
+            ArrayList<GenericClass> AICArrayList = new ArrayList();
+            URL url = null;
+            try {
+                url = new URL(str);
+            } catch (MalformedURLException e) {
+                response = e.getMessage();
+            } catch (Exception ex) {
+                response = ex.getMessage();
+            }
+            HttpURLConnection conn = null;
+
+            JSONObject jsonObject;
+            JSONStringer userJson = null;
+            OutputStreamWriter outputStreamWriter = null;
+            int responseCode;
+            BufferedReader br;
+            String line;
+            try {
+                conn = (HttpURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //starting
+            try {
+                conn.setRequestMethod("GET");
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                responseCode = conn.getResponseCode();
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while (true) {
+                    line = br.readLine();
+                    if (line != null) {
+                        response = response + line;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+                jObject = null;
+                if (!response.isEmpty()) {
+                    try {
+                        jsonArray = new JSONArray(response);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+
+                    for (i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object2 = jsonArray.getJSONObject(i);
+                        GenericClass _AIC= new GenericClass ();
+                        _AIC.setId(object2.getInt("Id"));
+                        _AIC.setName(object2.getString("Name"));
+                        _AIC.setIsActive(object2.getBoolean("IsActive"));
+
+
+
+                        AICArrayList.add(_AIC);
+
+                    }
+                } catch (JSONException e322) {
+                    response = e322.getMessage();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return AICArrayList ;
+        }
+    }
+    /*END-- Collect AIC List data from DB with API --END*/
+
+    /* Begin-- Collect ASM List information data from DB with API --Begin*/
+    public class GetASMList extends AsyncTask<ArrayList<String>, Void, ArrayList<GenericClass>> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected void onPostExecute(ArrayList<GenericClass> ASMList) {
+            // super.onPostExecute(i);
+            if (ASMList.size() > 1) {
+                AddASMList(ASMList);
+
+
+            } else {
+                // onLoginFailed();
+            }
+        }
+
+        protected ArrayList<GenericClass> doInBackground(ArrayList<String>... params) {
+            Integer result;
+            JSONObject jObject;
+            JSONArray jsonArray = null;
+            int i = 0;
+            String str = "http://192.168.1.5:91/api/ASM";//"http://202.126.122.85:71/api/Division";
+            String response = "";
+            ArrayList<GenericClass> ASMArrayList = new ArrayList();
+            URL url = null;
+            try {
+                url = new URL(str);
+            } catch (MalformedURLException e) {
+                response = e.getMessage();
+            } catch (Exception ex) {
+                response = ex.getMessage();
+            }
+            HttpURLConnection conn = null;
+
+            JSONObject jsonObject;
+            JSONStringer userJson = null;
+            OutputStreamWriter outputStreamWriter = null;
+            int responseCode;
+            BufferedReader br;
+            String line;
+            try {
+                conn = (HttpURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //starting
+            try {
+                conn.setRequestMethod("GET");
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                responseCode = conn.getResponseCode();
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while (true) {
+                    line = br.readLine();
+                    if (line != null) {
+                        response = response + line;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+                jObject = null;
+                if (!response.isEmpty()) {
+                    try {
+                        jsonArray = new JSONArray(response);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+
+                    for (i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object2 = jsonArray.getJSONObject(i);
+                        GenericClass _ASM= new GenericClass ();
+                        _ASM.setId(object2.getInt("Id"));
+                        _ASM.setName(object2.getString("Name"));
+                        _ASM.setIsActive(object2.getBoolean("IsActive"));
+
+
+
+                        ASMArrayList.add(_ASM);
+
+                    }
+                } catch (JSONException e322) {
+                    response = e322.getMessage();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return ASMArrayList ;
+        }
+    }
+    /*END-- Collect ASM List data from DB with API --END*/
+
+
     /**
      * RecyclerView item decoration - give equal margin around grid item
      */

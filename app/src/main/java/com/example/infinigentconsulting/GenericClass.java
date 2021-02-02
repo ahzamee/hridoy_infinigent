@@ -4,7 +4,7 @@ public class GenericClass {
 
     public int Id;
     public String Name;
-
+    public boolean IsActive;
 
     public int getId() {
         return Id;
@@ -20,5 +20,13 @@ public class GenericClass {
 
     public void setName(String name) {
         this.Name = name;
+    }
+
+    public Boolean getIsActive() {
+        return IsActive;
+    }
+
+    public void setIsActive(Boolean IsActive) {
+        this.IsActive = IsActive;
     }
 }

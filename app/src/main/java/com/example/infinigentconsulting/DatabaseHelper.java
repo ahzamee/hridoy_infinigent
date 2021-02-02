@@ -10,6 +10,18 @@ import android.net.ConnectivityManager;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "qt_infinigentdb.db";
 
+    /*--Table Name LU_AIC --*/
+    public static final String TABLE_NAME_LU_AIC  = "LU_AIC";
+    public static final String LU_AIC_COL_1 = "Id";
+    public static final String LU_AIC_COL_2 = "Name";
+    public static final String LU_AIC_COL_3 = "IsActive";
+
+    /*--Table Name LU_ASM --*/
+    public static final String TABLE_NAME_LU_ASM  = "LU_ASM";
+    public static final String LU_ASM_COL_1 = "Id";
+    public static final String LU_ASM_COL_2 = "Name";
+    public static final String LU_ASM_COL_3 = "IsActive";
+
 
     /*--Table Name LU_ChallanType--*/
     public static final String TABLE_NAME_LU_ChallanType = "LU_ChallanType";
@@ -31,6 +43,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String LU_DeviceInfo_COL_1 = "Id";
     public static final String LU_DeviceInfo_COL_2 = "Name";
     public static final String LU_DeviceInfo_COL_3 = "UniqueNumber";
+
+    /*--Table Name LU_DistributorDetails --*/
+    public static final String TABLE_NAME_LU_DistributorDetails  = "LU_DistributorDetails";
+    public static final String LU_DistributorDetails_COL_1 = "Id";
+    public static final String LU_DistributorDetails_COL_2 = "Name";
+    public static final String LU_DistributorDetails_COL_3 = "IsActive";
 
     /*--Table Name LU_Employee --*/
     public static final String TABLE_NAME_LU_Employee  = "LU_Employee";
@@ -77,49 +95,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TRN_SchemeAuditParent_COL_4 = "OutlateName";
 
 
-
-   /* [Id]
-            ,[Number]
-            ,[UserId]
-            ,[OutlateName]
-            ,[Date]
-            ,[GccCode]
-            ,[RetailSellerName]
-            ,[MobileNumber]
-            ,[OutlateTypeId]
-            ,[VisitedDate]
-            ,[DistributorName]
-            ,[AsmId]
-            ,[AicId]
-            ,[OutlateAddress]
-            ,[IsKnowenAboutScheme]
-            ,[SchemeDetails]
-            ,[SchemeMediaTypeId]
-            ,[IsFacilitatedByScheme]
-            ,[DateOfScheme]
-            ,[IsWrittenRecordAvailable]
-            ,[LatestChallanDate]
-            ,[ChallanAmount]
-            ,[DoesGotAnyChallan]
-            ,[ChallanTypeId]
-            ,[DoesExpiredProductAvailable]
-            ,[DoesSatisfiedWithSallesOfficer]
-            ,[DoesSatisfiedWithProductOrderAndService]
-            ,[SallesOfficerVisitingDay]
-            ,[DoesGotLatestDiscountOffer]
-            ,[WillGetAnyDiscountOfferFromDistributor]
-            ,[DoesCocaColaLabelAvailable]
-            ,[IsGccCodeAvailable]
-            ,[CommentsType]
-            ,[Comments]
-            ,[CommentDetails]
-            ,[CreatorId]
-            ,[CreationDate]
-            ,[ModifierId]
-            ,[ModificationDate]
-    */
-
-
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -127,18 +102,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME_LU_User + " (Id INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT,Email TEXT,MobileNo TEXT,Password TEXT,IsActive NUMERIC)");
-
         db.execSQL("CREATE TABLE " + TABLE_NAME_TRN_SchemeAuditChild + " (Id INTEGER PRIMARY KEY AUTOINCREMENT,Number TEXT, ImageLocation  blob,IsSignature NUMERIC)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME_LU_DistributorDetails + " (Id INTEGER ,Name TEXT, IsActive NUMERIC)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME_LU_AIC + " (Id INTEGER ,Name TEXT, IsActive NUMERIC)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME_LU_ASM + " (Id INTEGER ,Name TEXT, IsActive NUMERIC)");
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_User);
         db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_TRN_SchemeAuditChild);
+        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_DistributorDetails);
+        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_AIC);
+        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_ASM);
         onCreate(db);
     }
 
-    //
+
     public boolean addData(byte[] img)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -168,7 +150,88 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  Isresult;
 
     }
-    //
+    public boolean   insertDistributorList(Integer Id , String Name, boolean IsActive) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LU_DistributorDetails_COL_1, Id);
+        contentValues.put(LU_DistributorDetails_COL_2, Name);
+        contentValues.put(LU_DistributorDetails_COL_3, IsActive);
+        boolean Isresult= false;
+        try
+        {
+            db.beginTransaction();
+            long  result = db.insert(TABLE_NAME_LU_DistributorDetails, null, contentValues);
+            db.setTransactionSuccessful();
+            if (result == -1)
+                Isresult= false;
+            else
+                Isresult= true;
+        }
+        catch (Exception exception)
+        {
+
+            db.endTransaction();
+        }
+        finally {
+            db.endTransaction();
+        }
+        return  Isresult;
+    }
+    public boolean   insertAICList(Integer Id , String Name, boolean IsActive) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LU_AIC_COL_1, Id);
+        contentValues.put(LU_AIC_COL_2, Name);
+        contentValues.put(LU_AIC_COL_3, IsActive);
+        boolean Isresult= false;
+        try
+        {
+            db.beginTransaction();
+            long  result = db.insert(TABLE_NAME_LU_AIC, null, contentValues);
+            db.setTransactionSuccessful();
+            if (result == -1)
+                Isresult= false;
+            else
+                Isresult= true;
+        }
+        catch (Exception exception)
+        {
+
+            db.endTransaction();
+        }
+        finally {
+            db.endTransaction();
+        }
+        return  Isresult;
+    }
+    public boolean   insertASMList(Integer Id , String Name, boolean IsActive) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LU_ASM_COL_1, Id);
+        contentValues.put(LU_ASM_COL_2, Name);
+        contentValues.put(LU_ASM_COL_3, IsActive);
+        boolean Isresult= false;
+        try
+        {
+            db.beginTransaction();
+            long  result = db.insert(TABLE_NAME_LU_ASM, null, contentValues);
+            db.setTransactionSuccessful();
+            if (result == -1)
+                Isresult= false;
+            else
+                Isresult= true;
+        }
+        catch (Exception exception)
+        {
+
+            db.endTransaction();
+        }
+        finally {
+            db.endTransaction();
+        }
+        return  Isresult;
+    }
+
     public boolean   insertData(String Name, String Email, String MobileNo, String Password,boolean IsActive) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -198,9 +261,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return  Isresult;
     }
+
+
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_User,null);
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_AIC,null);
         return res;
     }
     public Integer deleteData () {
