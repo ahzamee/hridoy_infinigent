@@ -209,7 +209,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.delete(TABLE_NAME_LU_User,"1= ?",new String[] {"1"});
     }
 
-
+    public Cursor getImageData()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME_TRN_SchemeAuditChild,null);
+        return res;
+    }
 }
 
 

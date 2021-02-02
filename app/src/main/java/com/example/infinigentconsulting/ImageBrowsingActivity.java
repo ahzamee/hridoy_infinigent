@@ -9,6 +9,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -33,7 +34,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
     final int REQUEST_CODE_GALLERY = 999;
     DatabaseHelper mDatabaseHelper;
     private ImageButton _img_previous_button, _shop_img_one,_shop_img_two,_shop_img_three;
-    private Button _image_submit_button;
+    private Button _image_submit_button,_submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
         _img_previous_button = findViewById(R.id.img_previous_button);
         _shop_img_one = findViewById(R.id.shop_img_one);
         _image_submit_button= findViewById(R.id._submit_img);
+        _submit=findViewById(R.id.submit);
         _img_previous_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,9 +82,18 @@ public class ImageBrowsingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 byte[] NewImage = imageViewToByte(_shop_img_one);
                 AddImage(NewImage);
-                Intent intent = new Intent(ImageBrowsingActivity.this, MainActivity.class);
-                startActivity(intent);
+               /* Intent intent = new Intent(ImageBrowsingActivity.this, MainActivity.class);
+                startActivity(intent);*/
 
+            }
+
+
+        });
+        _submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SentImageByApi();
             }
 
 
@@ -90,7 +101,27 @@ public class ImageBrowsingActivity extends AppCompatActivity {
     }
 
     // ******************
+    private void SentImageByApi()
+    {
+        Cursor getImageData = mDatabaseHelper.getImageData();
+        if(getImageData.getCount() == 0) {
+            // show message
 
+            return;
+        }
+
+        byte[] newImgEntry;
+        while (getImageData.moveToNext()) {
+             Toast(getImageData.getString(0));
+             Toast(getImageData.getString(1));
+             newImgEntry= getImageData.getBlob(2) ;
+             Toast(getImageData.getString(3));
+
+
+
+
+        }
+    }
     private void AddImage(byte[] newImgEntry)
     {
         boolean insertData = mDatabaseHelper.addData(newImgEntry);
