@@ -220,9 +220,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Show all data
-        showMessage("Data",buffer.toString());
+       // showMessage("Data",buffer.toString());
     }
     }
+
+
     public void showMessage(String title,String Message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
@@ -365,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
                JSONObject jObject;
                JSONArray jsonArray = null;
                int i = 0;
-               String str = "http://192.168.1.5:91/api/DistributorDetails";//"http://202.126.122.85:71/api/Division";
+               String str = "http://202.126.122.85:72/api/DistributorDetails";//"http://202.126.122.85:71/api/Division";
                String response = "";
                ArrayList<GenericClass> DistributorArrayList = new ArrayList();
                URL url = null;
@@ -468,7 +470,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject jObject;
             JSONArray jsonArray = null;
             int i = 0;
-            String str = "http://192.168.1.5:91/api/AIC";//"http://202.126.122.85:71/api/Division";
+            String str = "http://202.126.122.85:72/api/AIC";//"http://202.126.122.85:71/api/Division";
             String response = "";
             ArrayList<GenericClass> AICArrayList = new ArrayList();
             URL url = null;
@@ -571,7 +573,7 @@ public class MainActivity extends AppCompatActivity {
             JSONObject jObject;
             JSONArray jsonArray = null;
             int i = 0;
-            String str = "http://192.168.1.5:91/api/ASM";//"http://202.126.122.85:71/api/Division";
+            String str = "http://202.126.122.85/api/ASM";//"http://202.126.122.85:71/api/Division";
             String response = "";
             ArrayList<GenericClass> ASMArrayList = new ArrayList();
             URL url = null;

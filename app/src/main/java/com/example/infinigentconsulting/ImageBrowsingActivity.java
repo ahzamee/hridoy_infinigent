@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +23,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class ImageBrowsingActivity extends AppCompatActivity {
 
@@ -110,16 +122,99 @@ public class ImageBrowsingActivity extends AppCompatActivity {
             return;
         }
 
-        byte[] newImgEntry;
+        byte[] newImgEntry="Any String you want".getBytes();
         while (getImageData.moveToNext()) {
              Toast(getImageData.getString(0));
              Toast(getImageData.getString(1));
              newImgEntry= getImageData.getBlob(2) ;
              Toast(getImageData.getString(3));
 
+        }
+        new SentImage().execute(newImgEntry);
+    }
+
+    public class SentImage extends AsyncTask< byte[], Void, Integer> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected void onPostExecute(Integer i) {
+            super.onPostExecute(i);
+            if (i == 1) {
 
 
+            } else {
 
+            }
+        }
+
+        protected Integer doInBackground(byte[]... params) {
+            String response = "";
+            URL url = null;
+            try {
+                url = new URL("http://202.126.122.85:72/api/Tests");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            try {
+                byte[] passed = params[0];
+                HttpURLConnection conn = null;
+                try {
+                    conn = (HttpURLConnection) url.openConnection();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                assert conn != null;
+                conn.setReadTimeout(15000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+                conn.setRequestProperty("Content-Type", "application/json");
+                JSONObject jsonObject = new JSONObject();
+                JSONStringer userJson = new JSONStringer()
+                        .object()
+                        //.key("test")
+                       // .object()
+                        .key("test").value("Hridoy")
+                       // .key("ImageLocation").value(passed)
+                        //.key("IsSignature").value(false)
+                      //  .endObject()
+                        .endObject();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
+                outputStreamWriter.write(userJson.toString());
+                outputStreamWriter.close();
+                int  responseCode = conn.getResponseCode();
+                if (conn.getResponseCode() == 200) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    while (true) {
+                        String line = br.readLine();
+                        if (line == null) {
+                            break;
+                        }
+                        response = response + line;
+                    }
+                } else {
+                    response = "";
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+            Integer result = 0;
+            JSONObject jObject = null;
+            if (!response.isEmpty()) {
+                try {
+                    jObject = new JSONObject(response);
+                } catch (JSONException e3) {
+                    e3.printStackTrace();
+                }
+                try {
+                    result = Integer.parseInt(jObject.getString("GetAuthResult"));
+                } catch (JSONException e32) {
+                    e32.printStackTrace();
+                }
+            }
+            return result;
         }
     }
     private void AddImage(byte[] newImgEntry)
