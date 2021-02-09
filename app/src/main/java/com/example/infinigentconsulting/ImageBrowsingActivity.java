@@ -152,7 +152,8 @@ public class ImageBrowsingActivity extends AppCompatActivity {
             String response = "";
             URL url = null;
             try {
-                url = new URL("http://202.126.122.85:72/api/Tests");
+               // url = new URL("http://202.126.122.85:72/api/Tests");
+                url = new URL("http://192.168.99.184:72/api/Tests");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -172,16 +173,34 @@ public class ImageBrowsingActivity extends AppCompatActivity {
                 conn.setDoOutput(true);
                 conn.setRequestProperty("Content-Type", "application/json");
                 JSONObject jsonObject = new JSONObject();
+// userJson = new JSONStringer().object().key("user").object().key("userid").value(passed.get(0)).key("password").value(passed.get(1)).endObject().endObject();
+
                 JSONStringer userJson = new JSONStringer()
                         .object()
-                        //.key("test")
-                       // .object()
-                        .key("test").value("Hridoy")
-                       // .key("ImageLocation").value(passed)
+                        .key("test")
+                        .object()
+                        .key("Id").value(1)
+                        .key("Number").value("Hridoy")
+                        //.key("ImageLocation").value(passed)
                         //.key("IsSignature").value(false)
-                      //  .endObject()
+                        .endObject()
                         .endObject();
+              /*  JSONStringer Id = null;
+                JSONStringer Number = null;
+
+                try {
+                    Id  = new JSONStringer().object().key("Id").value(2).endObject();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Number = new JSONStringer().object().key("Number").value("4555").endObject();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
+               /* outputStreamWriter.write(Id.toString());
+                outputStreamWriter.write(Number.toString());*/
                 outputStreamWriter.write(userJson.toString());
                 outputStreamWriter.close();
                 int  responseCode = conn.getResponseCode();
