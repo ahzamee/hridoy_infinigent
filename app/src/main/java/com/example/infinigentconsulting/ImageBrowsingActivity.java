@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -52,6 +53,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     final int REQUEST_CODE_GALLERY = 999;
+
     DatabaseHelper mDatabaseHelper;
     private ImageButton _img_previous_button, _shop_img_one,_shop_img_two,_shop_img_three;
     private Button _image_submit_button,_submit;
@@ -132,24 +134,20 @@ public class ImageBrowsingActivity extends AppCompatActivity {
         }
 
         byte[] newImgEntry="Any String you want".getBytes();
-      /*  while (getImageData.moveToNext()) {
+       while (getImageData.moveToNext()) {
              Toast(getImageData.getString(0));
              Toast(getImageData.getString(1));
              newImgEntry= getImageData.getBlob(2) ;
              Toast(getImageData.getString(3));
 
-        }*/
+        }
        // new SentImage().execute(newImgEntry);
-        _Test();
+        _Test(newImgEntry);
     }
-    private void _Test() {
+    private void _Test(byte[] Photo) {
 
-        Test Test=new  Test(
-        1,"Numebr");
-        int Id = 1;
-        String Number = "One";
-
-
+        String encodedImage =  Base64.encodeToString(Photo,Base64.DEFAULT);
+        Test Test=new  Test(1,"Numeber_50",encodedImage);
 
         Call<Test> call = RetrofitClient
                 .getInstance()
@@ -285,7 +283,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
     public byte[] imageViewToByte(ImageButton image) {
         Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 75, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }

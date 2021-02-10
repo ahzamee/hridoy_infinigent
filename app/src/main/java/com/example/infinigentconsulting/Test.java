@@ -13,9 +13,15 @@ public class Test {
     @Expose
     public String Number;
 
-public Test(int Id,String Number){
+    @SerializedName("Photo")
+    @Expose
+    private String Photo;
+
+public Test(int Id,String Number,String Photo){
     this.Id=Id;
     this.Number=Number;
+    this.setPhoto(Photo);
+
 }
     public void setId(int Id) {
         this.Id = Id;
@@ -39,5 +45,13 @@ public Test(int Id,String Number){
     @Override
     public String toString() {
         return Number;
+    }
+
+    public String getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(String photo) {
+        Photo = photo;
     }
 }
