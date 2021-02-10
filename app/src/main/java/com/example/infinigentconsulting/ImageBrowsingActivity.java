@@ -23,22 +23,28 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.annotations.Expose;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ImageBrowsingActivity extends AppCompatActivity {
 
@@ -49,7 +55,8 @@ public class ImageBrowsingActivity extends AppCompatActivity {
     DatabaseHelper mDatabaseHelper;
     private ImageButton _img_previous_button, _shop_img_one,_shop_img_two,_shop_img_three;
     private Button _image_submit_button,_submit;
-
+    @Expose
+    String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,16 +132,52 @@ public class ImageBrowsingActivity extends AppCompatActivity {
         }
 
         byte[] newImgEntry="Any String you want".getBytes();
-        while (getImageData.moveToNext()) {
+      /*  while (getImageData.moveToNext()) {
              Toast(getImageData.getString(0));
              Toast(getImageData.getString(1));
              newImgEntry= getImageData.getBlob(2) ;
              Toast(getImageData.getString(3));
 
-        }
-        new SentImage().execute(newImgEntry);
+        }*/
+       // new SentImage().execute(newImgEntry);
+        _Test();
     }
+    private void _Test() {
 
+        Test Test=new  Test(
+        1,"Numebr");
+        int Id = 1;
+        String Number = "One";
+
+
+
+        Call<Test> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .Test(Test);
+
+        call.enqueue(new Callback<Test>() {
+            @Override
+            public void onResponse(Call<Test> call, Response<Test> response) {
+                Test   s = response.body();
+
+                if (s.Id!=0)  {
+                    Toast.makeText(ImageBrowsingActivity.this, "Invalid", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ImageBrowsingActivity.this, "Successfull", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Test> call, Throwable t) {
+                Toast.makeText(ImageBrowsingActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+        });
+        //int str=s.indexOf(0);
+
+
+    }
     public class SentImage extends AsyncTask< byte[], Void, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
@@ -154,8 +197,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
             String response = "";
             URL url = null;
             try {
-               // url = new URL("http://202.126.122.85:72/api/Tests");
-                url = new URL("http://192.168.99.184:72/api/My");
+                url = new URL("http://202.126.122.85:72/api/Tests");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -167,46 +209,24 @@ public class ImageBrowsingActivity extends AppCompatActivity {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
+                assert conn != null;
                 conn.setReadTimeout(15000);
                 conn.setConnectTimeout(15000);
-                    conn.setRequestMethod("POST");
+                conn.setRequestMethod("POST");
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
                 conn.setRequestProperty("Content-Type", "application/json");
                 JSONObject jsonObject = new JSONObject();
-// userJson = new JSONStringer().object().key("user").object().key("userid").value(passed.get(0)).key("password").value(passed.get(1)).endObject().endObject();
-
                 JSONStringer userJson = new JSONStringer()
                         .object()
-                        //.key("muser")
-                       // .object()
-
-                        .key("muser").value("Hridoy")
-                        //.key("ImageLocation").value(passed)
-                        //.key("IsSignature").value(false)
-                        //.endObject()
+                        .key("test")
+                        .object()
+                        .key("Number").value("Hridoy")
+                        .key("ImageLocation").value(passed)
+                        .key("IsSignature").value(false)
+                        .endObject()
                         .endObject();
-
-              /*  JSONStringer Id = null;
-                JSONStringer Number = null;
-
-                try {
-                    Id  = new JSONStringer().object().key("Id").value(2).endObject();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    Number = new JSONStringer().object().key("Number").value("4555").endObject();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
-
-
-
-              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
-               // outputStreamWriter.write(Id.toString());
-               // outputStreamWriter.write(Number.toString());
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
                 outputStreamWriter.write(userJson.toString());
                 outputStreamWriter.close();
                 int  responseCode = conn.getResponseCode();
@@ -242,6 +262,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
             return result;
         }
     }
+
     private void AddImage(byte[] newImgEntry)
     {
         boolean insertData = mDatabaseHelper.addData(newImgEntry);

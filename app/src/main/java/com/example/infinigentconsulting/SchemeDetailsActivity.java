@@ -5,18 +5,23 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class SchemeDetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,6 +30,13 @@ public class SchemeDetailsActivity extends AppCompatActivity implements View.OnC
     private EditText _scheme_date, _latest_chalan_date;
     private int mYear, mMonth, mDay;
     private ImageButton _scheme_details_previous_button, _scheme_details_next_button;
+    private AutoCompleteTextView _comments_type_text_view, _comments_text_view ;
+    DatabaseHelper myDb;
+    private ArrayList<CommentsTypeClass> CommentsTypeList;
+    private ArrayList<CommnetsClass> CommentsList;
+    private Cursor comments_type_db_cursor,comments_db_cursor;
+    private CommentsTypeAdapter customAdapter;
+    private CommentsAdapter commentsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +60,83 @@ public class SchemeDetailsActivity extends AppCompatActivity implements View.OnC
             }
         });
 
+        myDb = new DatabaseHelper(this);
+        comments_type_db_cursor= myDb.getCommentsTypeList();
+        CommentsTypeList= new ArrayList<CommentsTypeClass>();
+        CommentsList = new ArrayList<>();
+
+        //Db to Arraylist<GenericClass> to StringArray
+        getCommentsTypeAsArrayList(CommentsTypeList,comments_type_db_cursor);
+
 
         _scheme_details_previous_button = findViewById(R.id.scheme_details_previous_button);
         _scheme_details_next_button = findViewById(R.id.scheme_details_next_button);
-        _scheme_date_picker = (Button) findViewById(R.id.date_of_scheme_date_picker);
-        _latest_chalan_date_picker = (Button) findViewById(R.id.latest_chalan_date_picker);
+        _scheme_date_picker = findViewById(R.id.date_of_scheme_date_picker);
+        _latest_chalan_date_picker = findViewById(R.id.latest_chalan_date_picker);
+        _comments_type_text_view = findViewById(R.id.comments_type);
+        _comments_text_view =findViewById(R.id.comments);
 
-        _scheme_date = (EditText) findViewById(R.id.date_of_scheme_);
-        _latest_chalan_date = (EditText) findViewById(R.id.latest_chalan_date);
+        _scheme_date = findViewById(R.id.date_of_scheme_);
+        _latest_chalan_date = findViewById(R.id.latest_chalan_date);
 
         _scheme_details_previous_button.setOnClickListener(this);
         _scheme_details_next_button.setOnClickListener(this);
 
         _scheme_date_picker.setOnClickListener(this);
         _latest_chalan_date_picker.setOnClickListener(this);
+
+
+
+        // CommentsType Adapter
+        customAdapter = new CommentsTypeAdapter(this, R.layout.spinner_layout, CommentsTypeList);
+        _comments_type_text_view.setThreshold(1);
+        _comments_type_text_view.setAdapter(customAdapter);
+
+        //Comments Type TEXT VIEW ON CLICK LISTENER
+
+        _comments_type_text_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View arg0) {
+                _comments_type_text_view.showDropDown();
+            }
+        });
+        // handle click event and set desc on textview
+        _comments_type_text_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CommentsTypeClass commentType = (CommentsTypeClass) adapterView.getItemAtPosition(i);
+                _comments_type_text_view.setText(commentType.getCommentsType());
+                int _id =commentType.getId();
+               comments_db_cursor = myDb.getCommentList(_id);
+               getCommentsAsArrayList(CommentsList,comments_db_cursor);
+            }
+        });
+
+        //------------------------------------------------------------------------------------//
+
+        // Comments Adapter
+        commentsAdapter= new CommentsAdapter(this, R.layout.spinner_layout, CommentsList);
+        _comments_text_view.setThreshold(1);
+        _comments_text_view.setAdapter(commentsAdapter);
+
+        //Comments Type TEXT VIEW ON CLICK LISTENER
+
+        _comments_text_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View arg0) {
+                _comments_text_view.showDropDown();
+            }
+        });
+        // handle click event and set comment on textview
+        _comments_text_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CommnetsClass comment = (CommnetsClass) adapterView.getItemAtPosition(i);
+                _comments_text_view.setText(comment.getComments());
+            }
+        });
+
+
     }
 
 
@@ -144,5 +219,52 @@ public class SchemeDetailsActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+
+
+    public ArrayList<CommentsTypeClass> getCommentsTypeAsArrayList(ArrayList<CommentsTypeClass> commentsTypeArrayList, Cursor cursor) {
+
+        Cursor res = cursor;
+        if (res.getCount() == 0) {
+            // show message
+            // showMessage("Error","Nothing found");
+            Toast.makeText(SchemeDetailsActivity.this, "Not Found", Toast.LENGTH_LONG).show();
+//            return DistributordetailsList;
+        }
+        while (res.moveToNext()) {
+            CommentsTypeClass _commentsTypeDetails = new CommentsTypeClass();
+            _commentsTypeDetails.setId(res.getInt(0));
+            _commentsTypeDetails.setCommentsType(res.getString(1));
+            commentsTypeArrayList.add(_commentsTypeDetails);
+
+
+
+        }
+        return commentsTypeArrayList;
+    }
+
+
+    public ArrayList<CommnetsClass> getCommentsAsArrayList(ArrayList<CommnetsClass> commentsArrayList, Cursor cursor) {
+
+        Cursor res = cursor;
+        if (res.getCount() == 0) {
+            // show message
+            // showMessage("Error","Nothing found");
+            Toast.makeText(SchemeDetailsActivity.this, "Not Found", Toast.LENGTH_LONG).show();
+//            return DistributordetailsList;
+        }
+        while (res.moveToNext()) {
+            CommnetsClass _comments = new CommnetsClass();
+            _comments.setId(res.getInt(0));
+            _comments.setCommentsTypeId(res.getInt(1));
+            _comments.setComments(res.getString(2));
+            commentsArrayList.add(_comments);
+
+
+
+        }
+        return commentsArrayList;
+    }
+
+
 
 }
