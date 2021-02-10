@@ -11,13 +11,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "qt_infinigentdb.db";
 
     /*--Table Name LU_AIC --*/
-    public static final String TABLE_NAME_LU_AIC  = "LU_AIC";
+    public static final String TABLE_NAME_LU_AIC = "LU_AIC";
     public static final String LU_AIC_COL_1 = "Id";
     public static final String LU_AIC_COL_2 = "Name";
     public static final String LU_AIC_COL_3 = "IsActive";
 
     /*--Table Name LU_ASM --*/
-    public static final String TABLE_NAME_LU_ASM  = "LU_ASM";
+    public static final String TABLE_NAME_LU_ASM = "LU_ASM";
     public static final String LU_ASM_COL_1 = "Id";
     public static final String LU_ASM_COL_2 = "Name";
     public static final String LU_ASM_COL_3 = "IsActive";
@@ -29,46 +29,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String LU_ChallanType_COL_2 = "Name";
 
     /*--Table Name LU_CommentsType --*/
-    public static final String TABLE_NAME_LU_CommentsType  = "LU_CommentsType";
+    public static final String TABLE_NAME_LU_CommentsType = "LU_CommentsType";
     public static final String LU_CommentsType_COL_1 = "Id";
     public static final String LU_CommentsType_COL_2 = "CommentsType";
 
     /*--Table Name LU_Comments --*/
-    public static final String TABLE_NAME_LU_Commnets  = "LU_Commnets";
+    public static final String TABLE_NAME_LU_Commnets = "LU_Commnets";
     public static final String LU_Commnets_COL_1 = "Id";
     public static final String LU_Commnets_COL_2 = "CommentsTypeId";
     public static final String LU_Commnets_COL_3 = "Comments";
 
     /*--Table Name LU_DeviceInfo --*/
-    public static final String TABLE_NAME_LU_DeviceInfo  = "LU_DeviceInfo";
+    public static final String TABLE_NAME_LU_DeviceInfo = "LU_DeviceInfo";
     public static final String LU_DeviceInfo_COL_1 = "Id";
     public static final String LU_DeviceInfo_COL_2 = "Name";
     public static final String LU_DeviceInfo_COL_3 = "UniqueNumber";
 
     /*--Table Name LU_DistributorDetails --*/
-    public static final String TABLE_NAME_LU_DistributorDetails  = "LU_DistributorDetails";
+    public static final String TABLE_NAME_LU_DistributorDetails = "LU_DistributorDetails";
     public static final String LU_DistributorDetails_COL_1 = "Id";
     public static final String LU_DistributorDetails_COL_2 = "Name";
     public static final String LU_DistributorDetails_COL_3 = "IsActive";
 
     /*--Table Name LU_Employee --*/
-    public static final String TABLE_NAME_LU_Employee  = "LU_Employee";
+    public static final String TABLE_NAME_LU_Employee = "LU_Employee";
     public static final String LU_Employee_COL_1 = "Id";
     public static final String LU_Employee_COL_2 = "Name";
     public static final String LU_Employee_COL_3 = "EmployeeTypeId";
 
     /*--Table Name LU_OutletType --*/
-    public static final String TABLE_NAME_LU_OutletType  = "LU_OutletType";
+    public static final String TABLE_NAME_LU_OutletType = "LU_OutletType";
     public static final String LU_OutletType_COL_1 = "Id";
     public static final String LU_OutletType_COL_2 = "Name";
 
     /*--Table Name LU_SchemeMediaType --*/
-    public static final String TABLE_NAME_LU_SchemeMediaType  = "LU_SchemeMediaType";
+    public static final String TABLE_NAME_LU_SchemeMediaType = "LU_SchemeMediaType";
     public static final String LU_SchemeMediaType_COL_1 = "Id";
     public static final String LU_SchemeMediaType_COL_2 = "Name";
 
     /*--Table Name LU_SchemeName --*/
-    public static final String TABLE_NAME_LU_SchemeName  = "LU_SchemeName";
+    public static final String TABLE_NAME_LU_SchemeName = "LU_SchemeName";
     public static final String LU_SchemeNameType_COL_1 = "Id";
     public static final String LU_SchemeNameType_COL_2 = "Name";
 
@@ -108,7 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME_LU_AIC + " (Id INTEGER ,Name TEXT, IsActive NUMERIC)");
         db.execSQL("CREATE TABLE " + TABLE_NAME_LU_ASM + " (Id INTEGER ,Name TEXT, IsActive NUMERIC)");
         db.execSQL("CREATE TABLE " + TABLE_NAME_LU_CommentsType + " (Id INTEGER ,CommentsType TEXT)");
-        db.execSQL("CREATE TABLE " + TABLE_NAME_LU_Commnets+ " (Id INTEGER ,CommentsTypeId TEXT, Comments TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME_LU_Commnets + " (Id INTEGER ,CommentsTypeId TEXT, Comments TEXT)");
 
 
     }
@@ -116,175 +116,150 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_User);
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_TRN_SchemeAuditChild);
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_DistributorDetails);
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_AIC);
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_ASM);
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_CommentsType);
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME_LU_Commnets);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_TRN_SchemeAuditChild);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_DistributorDetails);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_AIC);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_ASM);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_CommentsType);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_LU_Commnets);
         onCreate(db);
     }
 
 
-    public boolean addData(byte[] img)
-    {
+    public boolean addData(byte[] img) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TRN_SchemeAuditChild_COL_2, "Test");
         contentValues.put(TRN_SchemeAuditChild_COL_3, img);
         contentValues.put(TRN_SchemeAuditChild_COL_4, true);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_TRN_SchemeAuditChild, null, contentValues);
+            long result = db.insert(TABLE_NAME_TRN_SchemeAuditChild, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
 
     }
 
     // INSERT DISTRIBUTOR LIST IN SQLITE DATABASE
-    public boolean   insertDistributorList(Integer Id , String Name, boolean IsActive) {
+    public boolean insertDistributorList(Integer Id, String Name, boolean IsActive) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LU_DistributorDetails_COL_1, Id);
         contentValues.put(LU_DistributorDetails_COL_2, Name);
         contentValues.put(LU_DistributorDetails_COL_3, IsActive);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_LU_DistributorDetails, null, contentValues);
+            long result = db.insert(TABLE_NAME_LU_DistributorDetails, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
     }
 
     // INSERT AIC LIST IN SQLITE DATABASE
-    public boolean   insertAICList(Integer Id , String Name, boolean IsActive) {
+    public boolean insertAICList(Integer Id, String Name, boolean IsActive) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LU_AIC_COL_1, Id);
         contentValues.put(LU_AIC_COL_2, Name);
         contentValues.put(LU_AIC_COL_3, IsActive);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_LU_AIC, null, contentValues);
+            long result = db.insert(TABLE_NAME_LU_AIC, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
     }
 
     // INSERT ASM LIST IN SQLITE DATABASE
-    public boolean   insertASMList(Integer Id , String Name, boolean IsActive) {
+    public boolean insertASMList(Integer Id, String Name, boolean IsActive) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LU_ASM_COL_1, Id);
         contentValues.put(LU_ASM_COL_2, Name);
         contentValues.put(LU_ASM_COL_3, IsActive);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_LU_ASM, null, contentValues);
+            long result = db.insert(TABLE_NAME_LU_ASM, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
     }
 
 
     // INSERT CommentsType LIST IN SQLITE DATABASE
-    public boolean   insertCommentsTypeList(Integer Id , String CommentsType) {
+    public boolean insertCommentsTypeList(Integer Id, String CommentsType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LU_CommentsType_COL_1, Id);
         contentValues.put(LU_CommentsType_COL_2, CommentsType);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_LU_CommentsType, null, contentValues);
+            long result = db.insert(TABLE_NAME_LU_CommentsType, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
     }
 
     // INSERT Comments LIST IN SQLITE DATABASE
-    public boolean   insertCommentsList(Integer Id , Integer CommentsTypeId, String Comments) {
+    public boolean insertCommentsList(Integer Id, Integer CommentsTypeId, String Comments) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LU_Commnets_COL_1, Id);
         contentValues.put(LU_Commnets_COL_2, CommentsTypeId);
         contentValues.put(LU_Commnets_COL_2, Comments);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_LU_Commnets, null, contentValues);
+            long result = db.insert(TABLE_NAME_LU_Commnets, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
     }
 
     // INSERT USER DATE IN SQLITE DATABASE
-    public boolean   insertData(String Name, String Email, String MobileNo, String Password,boolean IsActive) {
+    public boolean insertData(String Name, String Email, String MobileNo, String Password, boolean IsActive) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(LU_User_COL_2, Name);
@@ -292,70 +267,95 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(LU_User_COL_4, MobileNo);
         contentValues.put(LU_User_COL_5, Password);
         contentValues.put(LU_User_COL_6, IsActive);
-        boolean Isresult= false;
-        try
-        {
+        boolean Isresult = false;
+        try {
             db.beginTransaction();
-            long  result = db.insert(TABLE_NAME_LU_User, null, contentValues);
+            long result = db.insert(TABLE_NAME_LU_User, null, contentValues);
             db.setTransactionSuccessful();
-            Isresult= result != -1;
-        }
-        catch (Exception exception)
-        {
+            Isresult = result != -1;
+        } catch (Exception exception) {
 
             db.endTransaction();
-        }
-        finally {
+        } finally {
             db.endTransaction();
         }
-        return  Isresult;
+        return Isresult;
     }
 
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_AIC,null);
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_LU_AIC, null);
         return res;
     }
+
     public Cursor getDistributorList() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_DistributorDetails,null);
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_LU_DistributorDetails, null);
         return res;
     }
 
     public Cursor getAICNameList() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_AIC,null);
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_LU_AIC, null);
         return res;
     }
 
     public Cursor getASMNameList() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_ASM,null);
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_LU_ASM, null);
         return res;
     }
 
     public Cursor getCommentsTypeList() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_CommentsType,null);
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_LU_CommentsType, null);
         return res;
-    }
-    public Cursor getCommentList(int _comments_type_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String strrr="select * from "+TABLE_NAME_LU_Commnets +" where "+ LU_Commnets_COL_2 +" = " +_comments_type_id;
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_LU_Commnets +" where "+ LU_Commnets_COL_2 +" = " +_comments_type_id,null);
-        return res;
-    }
-    public Integer deleteData () {
-        SQLiteDatabase db = this.getWritableDatabase();
-        /* return db.delete(TABLE_NAME, "ID = ?",new String[] {id});*/
-        return db.delete(TABLE_NAME_LU_User,"1= ?",new String[] {"1"});
     }
 
-    public Cursor getImageData()
-    {
+    public Cursor getCommentList(int _comments_type_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME_TRN_SchemeAuditChild,null);
+        String strrr = "select * from " + TABLE_NAME_LU_Commnets + " where " + LU_Commnets_COL_2 + " = " + _comments_type_id;
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_LU_Commnets + " where " + LU_Commnets_COL_2 + " = " + _comments_type_id, null);
+        return res;
+    }
+
+    public Integer deleteData() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Integer count = 0;
+        try {
+            db.beginTransaction();
+            db.delete(TABLE_NAME_LU_User, "1= ?", new String[]{"1"});
+            count++;
+            db.delete(TABLE_NAME_LU_AIC, "1= ?", new String[]{"1"});
+            count++;
+            db.delete(TABLE_NAME_LU_ASM, "1= ?", new String[]{"1"});
+            count++;
+            /*db.delete(TABLE_NAME_LU_ChallanType, "1= ?", new String[]{"1"});
+            count++;*/
+            db.delete(TABLE_NAME_LU_CommentsType, "1= ?", new String[]{"1"});
+            count++;
+            db.delete(TABLE_NAME_LU_Commnets, "1= ?", new String[]{"1"});
+            count++;
+            db.delete(TABLE_NAME_LU_DistributorDetails, "1= ?", new String[]{"1"});
+            count++;
+        } catch (Exception exception) {
+
+            db.endTransaction();
+        } finally {
+            db.endTransaction();
+        }
+        if (count == 6) {
+            return 6;
+        } else {
+            return 0;
+        }
+    }
+
+    public Cursor getImageData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME_TRN_SchemeAuditChild, null);
         return res;
     }
 }

@@ -69,13 +69,22 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if (IsInternetAvaiable == true) {
-                            new GetListofUser().execute();
-                            new GetDistributorList().execute();
-                            new GetAICList().execute();
-                            new GetASMList().execute();
-                            new GetCommentsTypeList().execute();
-                            new GetCommentsList().execute();
-
+                            try {
+                                Toast.makeText(MainActivity.this, "Collecting Information. Please wait...", Toast.LENGTH_LONG).show();
+                                Integer Counter = myDb.deleteData();
+                                if (Counter == 6) {
+                                    new GetListofUser().execute();
+                                    new GetDistributorList().execute();
+                                    new GetAICList().execute();
+                                    new GetASMList().execute();
+                                    new GetCommentsTypeList().execute();
+                                    new GetCommentsList().execute();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "404 Server Error", Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception ex) {
+                                Toast.makeText(MainActivity.this, "Internet Is Not Available,Please Check Your Internet Connection.", Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             Toast.makeText(MainActivity.this, "Internet Is Not Available,Please Check Your Internet Connection.", Toast.LENGTH_LONG).show();
                         }
@@ -97,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         //myDb.getAllData();
         prepareAlbums();
 
-
         //ImageView of Cover Photo
         try {
             Glide.with(this).load(R.drawable.banner).into((ImageView) findViewById(R.id.backdrop));
@@ -107,10 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean internetIsConnected() {
-
-
         try {
-
             String command = "ping -c 1 google.com";
             IsInternetAvaiable = (Runtime.getRuntime().exec(command).waitFor() == 0);
             return IsInternetAvaiable;
@@ -156,73 +161,61 @@ public class MainActivity extends AppCompatActivity {
 
         for (GenericClass item : DistributorList) {
             boolean isInserted = myDb.insertDistributorList(item.Id, item.Name, item.IsActive);
-
-            if (isInserted == true)
-                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
-
+        Cursor res = myDb.getDistributorList();
+        if (res.getCount() != 0) {
+            Toast.makeText(MainActivity.this, "Data Inserting", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
     public void AddAICList(ArrayList<GenericClass> AICList) {
-
         for (GenericClass item : AICList) {
             boolean isInserted = myDb.insertAICList(item.Id, item.Name, item.IsActive);
-
-            if (isInserted == true)
-                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
-
+        Cursor res = myDb.getAICNameList();
+        if (res.getCount() != 0) {
+            Toast.makeText(MainActivity.this, "Data Inserting", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
     public void AddASMList(ArrayList<GenericClass> ASMList) {
-
         for (GenericClass item : ASMList) {
             boolean isInserted = myDb.insertASMList(item.Id, item.Name, item.IsActive);
-
-            if (isInserted == true)
-                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
-
+        Cursor res = myDb.getASMNameList();
+        if (res.getCount() != 0) {
+            Toast.makeText(MainActivity.this, "Data Inserting", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
     public void AddCommentsTypeList(ArrayList<CommentsTypeClass> CommentsTypeList) {
 
         for (CommentsTypeClass item : CommentsTypeList) {
             boolean isInserted = myDb.insertCommentsTypeList(item.Id, item.CommentsType);
-
-            if (isInserted == true)
-                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
+        Cursor res = myDb.getCommentsTypeList();
+        if (res.getCount() != 0) {
+            Toast.makeText(MainActivity.this, "Data Inserting", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
 
     }
 
     public void AddCommentsList(ArrayList<CommnetsClass> CommentsList) {
-
         for (CommnetsClass item : CommentsList) {
             boolean isInserted = myDb.insertCommentsList(item.Id, item.CommentsTypeId, item.Comments);
-
-            if (isInserted == true)
-                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
-
+        Cursor res = myDb.getCommentsTypeList();
+        if (res.getCount() != 0) {
+            Toast.makeText(MainActivity.this, "Data Inserting", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
     }
 
-    public void AddData(ArrayList<UserClass> UserList) {
+    public void AddUserList(ArrayList<UserClass> UserList) {
 
         for (UserClass item : UserList) {
             boolean isInserted = myDb.insertData(item.Name, item.Email, item.MobileNo, item.Password, item.IsActive);
@@ -284,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<UserClass> UserList) {
             // super.onPostExecute(i);
             if (UserList.size() > 1) {
-                AddData(UserList);
+                AddUserList(UserList);
                 viewAll();
 
             } else {
@@ -788,7 +781,7 @@ public class MainActivity extends AppCompatActivity {
             // super.onPostExecute(i);
             if (CommentsList.size() > 1) {
                 AddCommentsList(CommentsList);
-
+                //Toast.makeText(MainActivity.this, "Collecting Information Successfully...", Toast.LENGTH_LONG).show();
 
             } else {
                 // onLoginFailed();
