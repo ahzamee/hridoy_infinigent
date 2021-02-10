@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private CardViewAdapter adapter;
     private List<CardElement> cardElements;
     private boolean IsInternetAvaiable = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,16 +68,15 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case 2:
-                        if(IsInternetAvaiable== true) {
-                            //new GetListofUser().execute();
-                           // new GetDistributorList().execute();
-//                            new GetAICList().execute();
-//                            new GetASMList().execute();
-                           // new GetCommentsTypeList().execute();
+                        if (IsInternetAvaiable == true) {
+                            new GetListofUser().execute();
+                            new GetDistributorList().execute();
+                            new GetAICList().execute();
+                            new GetASMList().execute();
+                            new GetCommentsTypeList().execute();
                             new GetCommentsList().execute();
 
-                        }
-                        else{
+                        } else {
                             Toast.makeText(MainActivity.this, "Internet Is Not Available,Please Check Your Internet Connection.", Toast.LENGTH_LONG).show();
                         }
                         break;
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     public boolean internetIsConnected() {
 
 
@@ -154,14 +155,13 @@ public class MainActivity extends AppCompatActivity {
     public void AddDistributorList(ArrayList<GenericClass> DistributorList) {
 
         for (GenericClass item : DistributorList) {
-            boolean isInserted = myDb.insertDistributorList(item.Id,item.Name,item.IsActive);
+            boolean isInserted = myDb.insertDistributorList(item.Id, item.Name, item.IsActive);
 
             if (isInserted == true)
                 Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
 
 
     }
@@ -169,14 +169,13 @@ public class MainActivity extends AppCompatActivity {
     public void AddAICList(ArrayList<GenericClass> AICList) {
 
         for (GenericClass item : AICList) {
-            boolean isInserted = myDb.insertAICList(item.Id,item.Name,item.IsActive);
+            boolean isInserted = myDb.insertAICList(item.Id, item.Name, item.IsActive);
 
             if (isInserted == true)
                 Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
 
 
     }
@@ -184,14 +183,13 @@ public class MainActivity extends AppCompatActivity {
     public void AddASMList(ArrayList<GenericClass> ASMList) {
 
         for (GenericClass item : ASMList) {
-            boolean isInserted = myDb.insertASMList(item.Id,item.Name,item.IsActive);
+            boolean isInserted = myDb.insertASMList(item.Id, item.Name, item.IsActive);
 
             if (isInserted == true)
                 Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
 
 
     }
@@ -199,14 +197,13 @@ public class MainActivity extends AppCompatActivity {
     public void AddCommentsTypeList(ArrayList<CommentsTypeClass> CommentsTypeList) {
 
         for (CommentsTypeClass item : CommentsTypeList) {
-            boolean isInserted = myDb.insertCommentsTypeList(item.Id,item.CommentsType);
+            boolean isInserted = myDb.insertCommentsTypeList(item.Id, item.CommentsType);
 
             if (isInserted == true)
                 Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
         }
-
 
 
     }
@@ -214,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     public void AddCommentsList(ArrayList<CommnetsClass> CommentsList) {
 
         for (CommnetsClass item : CommentsList) {
-            boolean isInserted = myDb.insertCommentsList(item.Id,item.CommentsTypeId,item.Comments);
+            boolean isInserted = myDb.insertCommentsList(item.Id, item.CommentsTypeId, item.Comments);
 
             if (isInserted == true)
                 Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
@@ -223,20 +220,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     public void AddData(ArrayList<UserClass> UserList) {
 
-            for (UserClass item : UserList) {
-                boolean isInserted = myDb.insertData(item.Name, item.Email, item.MobileNo, item.Password, item.IsActive);
+        for (UserClass item : UserList) {
+            boolean isInserted = myDb.insertData(item.Name, item.Email, item.MobileNo, item.Password, item.IsActive);
 
-                if (isInserted == true)
-                    Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-            }
-
+            if (isInserted == true)
+                Toast.makeText(MainActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(MainActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+        }
 
 
     }
@@ -244,25 +239,26 @@ public class MainActivity extends AppCompatActivity {
     public void viewAll() {
 
         Cursor res = myDb.getAllData();
-        if(res.getCount() == 0) {
+        if (res.getCount() == 0) {
             // show message
-            showMessage("Error","Nothing found");
+            showMessage("Error", "Nothing found");
             return;
         }
 
         StringBuffer buffer = new StringBuffer();
         while (res.moveToNext()) {
-            buffer.append("Id :"+ res.getString(0)+"\n");
-            buffer.append("Name :"+ res.getString(1)+"\n");
-            buffer.append("Surname :"+ res.getString(2)+"\n");
-            buffer.append("Marks :"+ res.getString(3)+"\n\n");
+            buffer.append("Id :" + res.getString(0) + "\n");
+            buffer.append("Name :" + res.getString(1) + "\n");
+            buffer.append("Surname :" + res.getString(2) + "\n");
+            buffer.append("Marks :" + res.getString(3) + "\n\n");
 
 
-        // Show all data
-        showMessage("Data",buffer.toString());
+            // Show all data
+            showMessage("Data", buffer.toString());
+        }
     }
-    }
-    public void showMessage(String title,String Message){
+
+    public void showMessage(String title, String Message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -286,14 +282,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(ArrayList<UserClass> UserList) {
-           // super.onPostExecute(i);
+            // super.onPostExecute(i);
             if (UserList.size() > 1) {
                 AddData(UserList);
                 viewAll();
 
             } else {
-                 // onLoginFailed();
-                Log.d("a","not found");
+                // onLoginFailed();
+                Log.d("a", "not found");
             }
         }
 
@@ -340,9 +336,7 @@ public class MainActivity extends AppCompatActivity {
                     line = br.readLine();
                     if (line != null) {
                         response = response + line;
-                    }
-                    else
-                    {
+                    } else {
                         break;
                     }
 
@@ -360,13 +354,13 @@ public class MainActivity extends AppCompatActivity {
 
                     for (i = 0; i < jsonArray.length(); i++) {
                         JSONObject object2 = jsonArray.getJSONObject(i);
-                        UserClass _UserClass= new UserClass ();
+                        UserClass _UserClass = new UserClass();
                         _UserClass.setId(object2.getInt("Id"));
                         _UserClass.setName(object2.getString("Name"));
                         _UserClass.setEmail(object2.getString("Email"));
-                      _UserClass.setMobileNo(object2.getString("MobileNo"));
+                        _UserClass.setMobileNo(object2.getString("MobileNo"));
                         _UserClass.setPassword(object2.getString("Password"));
-                       _UserClass.setIsActive(object2.getBoolean("IsActive"));
+                        _UserClass.setIsActive(object2.getBoolean("IsActive"));
 
                         UserArrayList.add(_UserClass);
 
@@ -379,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            return UserArrayList ;
+            return UserArrayList;
         }
     }
     /*END-- Collect User information data from DB with API --END*/
@@ -387,106 +381,103 @@ public class MainActivity extends AppCompatActivity {
 
     /* Begin-- Collect Distributor List information data from DB with API --Begin*/
     public class GetDistributorList extends AsyncTask<ArrayList<String>, Void, ArrayList<GenericClass>> {
-           protected void onPreExecute() {
-               super.onPreExecute();
-           }
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
-           protected void onPostExecute(ArrayList<GenericClass> DistributorList) {
-               // super.onPostExecute(i);
-               if (DistributorList.size() > 1) {
-                   AddDistributorList(DistributorList);
-
-
-               } else {
-                   // onLoginFailed();
-               }
-           }
-
-           protected ArrayList<GenericClass> doInBackground(ArrayList<String>... params) {
-               Integer result;
-               JSONObject jObject;
-               JSONArray jsonArray = null;
-               int i = 0;
-               String str = "http://202.126.122.85:72/api/DistributorDetails";//"http://202.126.122.85:71/api/Division";
-               String response = "";
-               ArrayList<GenericClass> DistributorArrayList = new ArrayList();
-               URL url = null;
-               try {
-                   url = new URL(str);
-               } catch (MalformedURLException e) {
-                   response = e.getMessage();
-               } catch (Exception ex) {
-                   response = ex.getMessage();
-               }
-               HttpURLConnection conn = null;
-
-               JSONObject jsonObject;
-               JSONStringer userJson = null;
-               OutputStreamWriter outputStreamWriter = null;
-               int responseCode;
-               BufferedReader br;
-               String line;
-               try {
-                   conn = (HttpURLConnection) url.openConnection();
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
-               //starting
-               try {
-                   conn.setRequestMethod("GET");
-               } catch (ProtocolException e) {
-                   e.printStackTrace();
-               }
-
-               try {
-                   responseCode = conn.getResponseCode();
-                   br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                   while (true) {
-                       line = br.readLine();
-                       if (line != null) {
-                           response = response + line;
-                       }
-                       else
-                       {
-                           break;
-                       }
-
-                   }
-                   jObject = null;
-                   if (!response.isEmpty()) {
-                       try {
-                           jsonArray = new JSONArray(response);
-
-                       } catch (JSONException e) {
-                           e.printStackTrace();
-                       }
-                   }
-                   try {
-
-                       for (i = 0; i < jsonArray.length(); i++) {
-                           JSONObject object2 = jsonArray.getJSONObject(i);
-                           GenericClass _Distributor= new GenericClass ();
-                           _Distributor.setId(object2.getInt("Id"));
-                           _Distributor.setName(object2.getString("Name"));
-                           _Distributor.setIsActive(object2.getBoolean("IsActive"));
+        protected void onPostExecute(ArrayList<GenericClass> DistributorList) {
+            // super.onPostExecute(i);
+            if (DistributorList.size() > 1) {
+                AddDistributorList(DistributorList);
 
 
+            } else {
+                // onLoginFailed();
+            }
+        }
 
-                           DistributorArrayList.add(_Distributor);
+        protected ArrayList<GenericClass> doInBackground(ArrayList<String>... params) {
+            Integer result;
+            JSONObject jObject;
+            JSONArray jsonArray = null;
+            int i = 0;
+            String str = "http://202.126.122.85:72/api/DistributorDetails";//"http://202.126.122.85:71/api/Division";
+            String response = "";
+            ArrayList<GenericClass> DistributorArrayList = new ArrayList();
+            URL url = null;
+            try {
+                url = new URL(str);
+            } catch (MalformedURLException e) {
+                response = e.getMessage();
+            } catch (Exception ex) {
+                response = ex.getMessage();
+            }
+            HttpURLConnection conn = null;
 
-                       }
-                   } catch (JSONException e322) {
-                       response = e322.getMessage();
-                   }
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
+            JSONObject jsonObject;
+            JSONStringer userJson = null;
+            OutputStreamWriter outputStreamWriter = null;
+            int responseCode;
+            BufferedReader br;
+            String line;
+            try {
+                conn = (HttpURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //starting
+            try {
+                conn.setRequestMethod("GET");
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                responseCode = conn.getResponseCode();
+                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                while (true) {
+                    line = br.readLine();
+                    if (line != null) {
+                        response = response + line;
+                    } else {
+                        break;
+                    }
+
+                }
+                jObject = null;
+                if (!response.isEmpty()) {
+                    try {
+                        jsonArray = new JSONArray(response);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+
+                    for (i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object2 = jsonArray.getJSONObject(i);
+                        GenericClass _Distributor = new GenericClass();
+                        _Distributor.setId(object2.getInt("Id"));
+                        _Distributor.setName(object2.getString("Name"));
+                        _Distributor.setIsActive(object2.getBoolean("IsActive"));
 
 
-               return DistributorArrayList ;
-           }
-       }
-       /*END-- Collect Distributor List data from DB with API --END*/
+                        DistributorArrayList.add(_Distributor);
+
+                    }
+                } catch (JSONException e322) {
+                    response = e322.getMessage();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return DistributorArrayList;
+        }
+    }
+    /*END-- Collect Distributor List data from DB with API --END*/
 
     /* Begin-- Collect AIC List information data from DB with API --Begin*/
     public class GetAICList extends AsyncTask<ArrayList<String>, Void, ArrayList<GenericClass>> {
@@ -548,9 +539,7 @@ public class MainActivity extends AppCompatActivity {
                     line = br.readLine();
                     if (line != null) {
                         response = response + line;
-                    }
-                    else
-                    {
+                    } else {
                         break;
                     }
 
@@ -568,11 +557,10 @@ public class MainActivity extends AppCompatActivity {
 
                     for (i = 0; i < jsonArray.length(); i++) {
                         JSONObject object2 = jsonArray.getJSONObject(i);
-                        GenericClass _AIC= new GenericClass ();
+                        GenericClass _AIC = new GenericClass();
                         _AIC.setId(object2.getInt("Id"));
                         _AIC.setName(object2.getString("Name"));
                         _AIC.setIsActive(object2.getBoolean("IsActive"));
-
 
 
                         AICArrayList.add(_AIC);
@@ -586,7 +574,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            return AICArrayList ;
+            return AICArrayList;
         }
     }
     /*END-- Collect AIC List data from DB with API --END*/
@@ -651,9 +639,7 @@ public class MainActivity extends AppCompatActivity {
                     line = br.readLine();
                     if (line != null) {
                         response = response + line;
-                    }
-                    else
-                    {
+                    } else {
                         break;
                     }
 
@@ -671,11 +657,10 @@ public class MainActivity extends AppCompatActivity {
 
                     for (i = 0; i < jsonArray.length(); i++) {
                         JSONObject object2 = jsonArray.getJSONObject(i);
-                        GenericClass _ASM= new GenericClass ();
+                        GenericClass _ASM = new GenericClass();
                         _ASM.setId(object2.getInt("Id"));
                         _ASM.setName(object2.getString("Name"));
                         _ASM.setIsActive(object2.getBoolean("IsActive"));
-
 
 
                         ASMArrayList.add(_ASM);
@@ -689,7 +674,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            return ASMArrayList ;
+            return ASMArrayList;
         }
     }
     /*END-- Collect ASM List data from DB with API --END*/
@@ -754,9 +739,7 @@ public class MainActivity extends AppCompatActivity {
                     line = br.readLine();
                     if (line != null) {
                         response = response + line;
-                    }
-                    else
-                    {
+                    } else {
                         break;
                     }
 
@@ -774,10 +757,9 @@ public class MainActivity extends AppCompatActivity {
 
                     for (i = 0; i < jsonArray.length(); i++) {
                         JSONObject object2 = jsonArray.getJSONObject(i);
-                        CommentsTypeClass _CommentsType= new CommentsTypeClass ();
+                        CommentsTypeClass _CommentsType = new CommentsTypeClass();
                         _CommentsType.setId(object2.getInt("Id"));
                         _CommentsType.setCommentsType(object2.getString("CommentsType"));
-
 
 
                         CommentsTypeArrayList.add(_CommentsType);
@@ -791,7 +773,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            return CommentsTypeArrayList ;
+            return CommentsTypeArrayList;
         }
     }
     /*END-- Collect CommentsType List data from DB with API --END*/
@@ -856,9 +838,7 @@ public class MainActivity extends AppCompatActivity {
                     line = br.readLine();
                     if (line != null) {
                         response = response + line;
-                    }
-                    else
-                    {
+                    } else {
                         break;
                     }
 
@@ -876,11 +856,10 @@ public class MainActivity extends AppCompatActivity {
 
                     for (i = 0; i < jsonArray.length(); i++) {
                         JSONObject object2 = jsonArray.getJSONObject(i);
-                        CommnetsClass _Comments= new CommnetsClass ();
+                        CommnetsClass _Comments = new CommnetsClass();
                         _Comments.setId(object2.getInt("Id"));
                         _Comments.setCommentsTypeId(object2.getInt("CommentsTypeId"));
                         _Comments.setComments(object2.getString("Comments"));
-
 
 
                         CommentsArrayList.add(_Comments);
@@ -894,7 +873,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            return CommentsArrayList ;
+            return CommentsArrayList;
         }
     }
     /*END-- Collect Comments List data from DB with API --END*/

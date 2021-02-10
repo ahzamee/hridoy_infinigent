@@ -95,7 +95,7 @@
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:hint="@string/retailer_code"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textColorHint="#999" />
@@ -123,7 +123,7 @@
                 android:background="@drawable/edit_text_border"
                 android:ems="10"
                 android:hint="@string/mobile_no"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textColorHint="#999" />

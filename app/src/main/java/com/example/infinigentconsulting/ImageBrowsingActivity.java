@@ -162,9 +162,9 @@ public class ImageBrowsingActivity extends AppCompatActivity {
                 Test   s = response.body();
 
                 if (s.Id!=0)  {
-                    Toast.makeText(ImageBrowsingActivity.this, "Invalid", Toast.LENGTH_LONG).show();
-                } else {
                     Toast.makeText(ImageBrowsingActivity.this, "Successfull", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ImageBrowsingActivity.this, "Invalid", Toast.LENGTH_LONG).show();
                 }
             }
 
