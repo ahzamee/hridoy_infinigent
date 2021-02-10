@@ -28,10 +28,12 @@ import org.json.JSONObject;
 import org.json.JSONStringer;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -153,7 +155,7 @@ public class ImageBrowsingActivity extends AppCompatActivity {
             URL url = null;
             try {
                // url = new URL("http://202.126.122.85:72/api/Tests");
-                url = new URL("http://192.168.99.184:72/api/Tests");
+                url = new URL("http://192.168.99.184:72/api/My");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -165,10 +167,10 @@ public class ImageBrowsingActivity extends AppCompatActivity {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                assert conn != null;
+
                 conn.setReadTimeout(15000);
                 conn.setConnectTimeout(15000);
-                conn.setRequestMethod("POST");
+                    conn.setRequestMethod("POST");
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
                 conn.setRequestProperty("Content-Type", "application/json");
@@ -177,14 +179,15 @@ public class ImageBrowsingActivity extends AppCompatActivity {
 
                 JSONStringer userJson = new JSONStringer()
                         .object()
-                        .key("test")
-                        .object()
-                        .key("Id").value(1)
-                        .key("Number").value("Hridoy")
+                        //.key("muser")
+                       // .object()
+
+                        .key("muser").value("Hridoy")
                         //.key("ImageLocation").value(passed)
                         //.key("IsSignature").value(false)
-                        .endObject()
+                        //.endObject()
                         .endObject();
+
               /*  JSONStringer Id = null;
                 JSONStringer Number = null;
 
@@ -198,9 +201,12 @@ public class ImageBrowsingActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }*/
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
-               /* outputStreamWriter.write(Id.toString());
-                outputStreamWriter.write(Number.toString());*/
+
+
+
+              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(conn.getOutputStream());
+               // outputStreamWriter.write(Id.toString());
+               // outputStreamWriter.write(Number.toString());
                 outputStreamWriter.write(userJson.toString());
                 outputStreamWriter.close();
                 int  responseCode = conn.getResponseCode();
