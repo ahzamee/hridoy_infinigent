@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation  'com.squareup.retrofit2:retrofit:2.8.2'
     implementation  'com.squareup.retrofit2:converter-gson:2.8.2'
+    implementation project(path: ':signature_pad')
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
